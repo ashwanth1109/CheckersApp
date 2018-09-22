@@ -1,6 +1,8 @@
 //----------//
 /*
-  DEPENDENCIES
+  DEPENDENCIES -
+  $gameBoard - DIV
+  addPlayerPiece - FUNC
 */
 //----------//
 
@@ -33,7 +35,6 @@ const createBoard = () => {
       } else {
         $square.addClass(`light`);
       }
-      // console.log($square.data());
     }
   }
 };

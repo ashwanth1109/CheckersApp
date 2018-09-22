@@ -8,9 +8,12 @@ const $gameBoard = $(`#game-board`);
 //-----DEFINE THE GAME SIZE-----//
 const gameSize = 8;
 
-//-----CREATE BOARD-----//
+//-----CREATE BOARD AND PIECES-----//
 createBoard();
+// FUNCTION ALSO SETS CLICK LISTENERS
 
+//-----GET ALL THE ROWS-----//
+const $rows = $(`.row`);
 //-----GET ALL THE SQUARES-----//
 const $squares = $(`.square`);
 

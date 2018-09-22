@@ -1,3 +1,10 @@
+//----------//
+/*
+  DEPENDENCIES -
+  $square, playerId - as params
+*/
+//----------//
+
 //-----FUNC TO ADD CLICK EVENT TO PLAYER PIECES-----//
 const addPlayerPiece = ($square, playerId) => {
   //-----PLAYER PIECES APPENDED TO SQUARE-----//
