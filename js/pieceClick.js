@@ -22,26 +22,35 @@ const pieceClick = event => {
       // console.log($clickedPiece.data(`squareData`));
       const botLeft = $clickedPiece.parent().data(`squareData`).botLeft;
       const botRight = $clickedPiece.parent().data(`squareData`).botRight;
+      let $botLeftSquare, $botRightSquare;
       console.log(botLeft, botRight);
       if (botLeft[0] && botLeft[1]) {
-        const $botLeftSquare = $(`.square`).eq(
-          (botLeft[0] - 1) * 8 + botLeft[1] - 1
-        );
+        $botLeftSquare = $(`.square`).eq((botLeft[0] - 1) * 8 + botLeft[1] - 1);
         if (!$botLeftSquare.data(`squareData`).hasPiece) {
           $botLeftSquare.removeClass(`dark`).addClass(`darker`);
           $botLeftSquare.on(`click`, () => {
             $clickedPiece.removeClass(`selected`).appendTo($botLeftSquare);
             $botLeftSquare.removeClass(`darker`).addClass(`dark`);
+            $botLeftSquare.off(`click`);
+            $botRightSquare.removeClass(`darker`).addClass(`dark`);
+            $botRightSquare.off(`click`);
           });
         }
       }
       if (botRight[0] !== 9 && botRight[1] !== 9) {
-        const $botRightSquare = $(`.square`).eq(
+        $botRightSquare = $(`.square`).eq(
           (botRight[0] - 1) * 8 + botRight[1] - 1
         );
         // console.log($botRightSquare);
         if (!$botRightSquare.data(`squareData`).hasPiece) {
           $botRightSquare.removeClass(`dark`).addClass(`darker`);
+          $botRightSquare.on(`click`, () => {
+            $clickedPiece.removeClass(`selected`).appendTo($botRightSquare);
+            $botRightSquare.removeClass(`darker`).addClass(`dark`);
+            $botRightSquare.off(`click`);
+            $botLeftSquare.removeClass(`darker`).addClass(`dark`);
+            $botLeftSquare.off(`click`);
+          });
         }
       }
     }
