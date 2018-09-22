@@ -7,5 +7,7 @@ class Square {
     this.botLeft = [rowPosition + 1, columnPosition - 1];
     this.botRight = [rowPosition + 1, columnPosition + 1];
     this.value = (rowPosition - 1) * 8 + columnPosition;
+    this.hasPiece = false; // possibility of refactoring this into playerId
+    this.playerId = null;
   }
 }

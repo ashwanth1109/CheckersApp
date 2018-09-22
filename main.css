@@ -47,6 +47,7 @@ body {
   height: 50px;
   border-radius: 25px;
   background-color: #333;
+  cursor: pointer;
 }
 
 .player2 {
@@ -54,4 +55,9 @@ body {
   height: 50px;
   border-radius: 25px;
   background-color: #db3a34;
+  cursor: pointer;
+}
+
+.highlight {
+  border-radius: 5px solid white;
 }

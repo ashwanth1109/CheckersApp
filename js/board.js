@@ -18,13 +18,19 @@ for (let i = 1; i <= 8; i++) {
     if (!((i + j) % 2)) {
       $square.addClass(`dark`);
       if (i < 4) {
-        $(`<div class="player1">`).appendTo($square);
+        const $player1 = $(`<div class="player1">`).appendTo($square);
+        $square.data(`squareData`).hasPiece = true;
+        // console.log($square.data(`squareData`));
+        $player1.on(`click`, pieceClick);
       } else if (i > 5) {
-        $(`<div class="player2">`).appendTo($square);
+        const $player2 = $(`<div class="player2">`).appendTo($square);
+        $square.data(`squareData`).hasPiece = true;
+        // console.log($square.data(`squareData`));
+        $player2.on(`click`, pieceClick);
       }
     } else {
       $square.addClass(`light`);
     }
-    console.log($square.data());
+    // console.log($square.data());
   }
 }
