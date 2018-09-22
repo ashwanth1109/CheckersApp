@@ -5,9 +5,5 @@ const highlightNextMove = () => {
 const pieceClick = event => {
   console.log(`Piece was clicked`);
   console.log(event.currentTarget);
-  console.log(
-    $(event.currentTarget)
-      .parent()
-      .data(`squareData`)
-  );
+  console.log($(event.currentTarget));
 };

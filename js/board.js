@@ -20,6 +20,7 @@ for (let i = 1; i <= 8; i++) {
       if (i < 4) {
         const $player1 = $(`<div class="player1">`).appendTo($square);
         $square.data(`squareData`).hasPiece = true;
+        $square.data(`squareData`).playerId = 0;
         // console.log($square.data(`squareData`));
         $player1.on(`click`, pieceClick);
       } else if (i > 5) {
@@ -27,6 +28,7 @@ for (let i = 1; i <= 8; i++) {
         $square.data(`squareData`).hasPiece = true;
         // console.log($square.data(`squareData`));
         $player2.on(`click`, pieceClick);
+        $square.data(`squareData`).playerId = 1;
       }
     } else {
       $square.addClass(`light`);
