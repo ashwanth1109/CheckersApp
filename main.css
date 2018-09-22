@@ -61,3 +61,7 @@ body {
 .highlight {
   border: 3px solid white;
 }
+
+.selected {
+  border: 3px solid #f0c808;
+}
