@@ -18,7 +18,7 @@ const pieceClick = event => {
     $clickedPiece.addClass(`selected`);
 
     // HIGHLIGHT ALL POSITIONS THAT YOU CAN MOVE TO
-    if (player1Turn) {
+    if (player0Turn) {
       // console.log($clickedPiece.data(`squareData`));
       const botLeft = $clickedPiece.parent().data(`squareData`).botLeft;
       const botRight = $clickedPiece.parent().data(`squareData`).botRight;

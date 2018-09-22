@@ -1,7 +1,7 @@
 // console.log($);
 
 //-----CONSTANTS-----//
-let player1Turn = true;
+let player0Turn = true;
 
 //-----GET THE GAME BOARD-----//
 const $gameBoard = $(`#game-board`);
@@ -17,4 +17,4 @@ const $rows = $(`.row`);
 //-----GET ALL THE SQUARES-----//
 const $squares = $(`.square`);
 
-highlightPieces();
+findSquaresWithPieces();
