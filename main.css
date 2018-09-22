@@ -62,6 +62,15 @@ body {
   border: 3px solid white;
 }
 
+.darker {
+  background-color: #07483c;
+  cursor: pointer;
+}
+
 .selected {
   border: 3px solid #f0c808;
+}
+
+.noBorder {
+  border: 0px;
 }

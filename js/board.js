@@ -2,7 +2,7 @@
 
 //-----GET THE GAME BOARD-----//
 const $gameBoard = $(`#game-board`);
-console.log($gameBoard);
+// console.log($gameBoard);
 
 //-----CONSTANTS-----//
 const gameSize = 8;
