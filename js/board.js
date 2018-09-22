@@ -1,38 +1,39 @@
+//----------//
+/*
+  DEPENDENCIES
+*/
+//----------//
+
 //-----CREATE BOARD DYNAMICALLY-----//
-
-//-----GET THE GAME BOARD-----//
-const $gameBoard = $(`#game-board`);
-// console.log($gameBoard);
-
-//-----CONSTANTS-----//
-const gameSize = 8;
-
-//-----CREATE ROWS-----//
-for (let i = 1; i <= 8; i++) {
-  const $row = $(`<div class="row">`).appendTo($gameBoard);
-  //-----CREATE SQUARES-----//
-  for (let j = 1; j <= 8; j++) {
-    const $square = $(`<div class="square">`).appendTo($row);
-    const squareData = new Square(i, j);
-    $square.data(`squareData`, squareData);
-    if (!((i + j) % 2)) {
-      $square.addClass(`dark`);
-      if (i < 4) {
-        const $player1 = $(`<div class="player1">`).appendTo($square);
-        $square.data(`squareData`).hasPiece = true;
-        $square.data(`squareData`).playerId = 0;
-        // console.log($square.data(`squareData`));
-        $player1.on(`click`, pieceClick);
-      } else if (i > 5) {
-        const $player2 = $(`<div class="player2">`).appendTo($square);
-        $square.data(`squareData`).hasPiece = true;
-        // console.log($square.data(`squareData`));
-        $player2.on(`click`, pieceClick);
-        $square.data(`squareData`).playerId = 1;
+const createBoard = () => {
+  //-----FOR LOOP TO CREATE ROWS-----//
+  for (let i = 1; i <= 8; i++) {
+    //-----ROWS HAVE CLASS OF ROW: APPEND TO GAME BOARD-----//
+    const $row = $(`<div class="row">`).appendTo($gameBoard);
+    //-----FOR LOOP TO CREATE SQUARES-----//
+    for (let j = 1; j <= 8; j++) {
+      //-----SQUARES HAVE CLASS OF SQUARE: APPEND TO ROW-----//
+      const $square = $(`<div class="square">`).appendTo($row);
+      //-----squareData STORES SQUARE OBJECT CREATED FROM SQUARE CLASS-----//
+      const squareData = new Square(i, j);
+      $square.data(`squareData`, squareData);
+      //-----ADD CLASS DARK TO ALTERNATING SQUARES-----//
+      if (!((i + j) % 2)) {
+        $square.addClass(`dark`);
+        //-----ADD PLAYER 1 PIECES ON TO THE BOARD-----//
+        if (i < 4) {
+          //-----ADD PLAYER 1 PIECES AND SET CLICK HANDLER-----//
+          addPlayerPiece($square, 0);
+        }
+        //-----ADD PLAYER 2 PIECES ON TO THE BOARD-----//
+        else if (i > 5) {
+          //-----ADD PLAYER 2 PIECES AND SET CLICK HANDLER-----//
+          addPlayerPiece($square, 1);
+        }
+      } else {
+        $square.addClass(`light`);
       }
-    } else {
-      $square.addClass(`light`);
+      // console.log($square.data());
     }
-    // console.log($square.data());
   }
-}
+};

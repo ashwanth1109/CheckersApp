@@ -1,6 +1,5 @@
 const highlightPieces = () => {
-  const $squares = $(`.square`);
-  // console.log($square);
+  // console.log($squares);
 
   for (const square of $squares) {
     $square = $(square);
