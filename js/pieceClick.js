@@ -63,7 +63,6 @@ const highlightNextPositions = $clickedPiece => {
     const $botRight = $(`.square`)
       .eq((botRight[0] - 1) * 8 + botRight[1] - 1)
       .eq(0);
-    console.log($botLeft, $botRight);
     //-----RESET ALL DARKER ELEMENTS-----//
     $(`.darker`)
       .removeClass(`darker`)
@@ -73,8 +72,6 @@ const highlightNextPositions = $clickedPiece => {
       // Maybe refactor above if condition to add diagonal existence to class?
       //-----CHECK WHETHER TO HIGHLIGHT BOT LEFT-----//
       highlightSquare($botLeft, $botRight, $clickedPiece);
-      console.log($botLeft, $botRight);
-      console.log(botLeft, botRight);
     }
     if (botRight[0] !== 9 && botRight[1] !== 9) {
       //-----CHECK WHETHER TO HIGHLIGHT BOT RIGHT-----//

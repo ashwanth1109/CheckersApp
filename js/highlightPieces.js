@@ -46,6 +46,8 @@ const findSquaresWithPieces = () => {
       if (player0Turn) {
         //-----IDENTIFY ALL SQUARES WITH PLAYER 1 PIECES ON THEM-----//
         findPlayerPieces(squareData);
+      } else {
+        console.log(`reaching highlight pieces for player 2`);
       }
     }
   }
