@@ -32,7 +32,9 @@ const createBoard = () => {
           //-----ADD PLAYER 2 PIECES AND SET CLICK HANDLER-----//
           addPlayerPiece($square, 1);
         }
-      } else {
+      }
+      //-----ADD CLASS LIGHT TO ALTERNATING SQUARES-----//
+      else {
         $square.addClass(`light`);
       }
     }
