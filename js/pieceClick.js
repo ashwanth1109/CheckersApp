@@ -25,6 +25,9 @@ const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
       $square.off(`click`);
       $otherSquare.removeClass(`darker`).addClass(`dark`);
       $otherSquare.off(`click`);
+
+      // MOVE HAS BEEN MADE
+      // TIME TO CHANGE PLAYER TURN
     });
   }
 };
