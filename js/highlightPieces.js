@@ -18,7 +18,7 @@ const findPlayerPieces = squareData => {
     const botLeft = squareData.botLeft;
     const botRight = squareData.botRight;
     // CHECK IF BOT LEFT SQUARE IS OUTSIDE THE BOARD - BOUNDARY CONDITION 1
-    if (botLeft[0] === 0 && botLeft[1] !== 9) {
+    if (botLeft[0] !== 9 && botLeft[1] !== 0) {
       //-----IF BOT LEFT AVAILABLE PIECE NEEDS TO BE HIGHLIGHTED-----//
       addClassHighlight(botLeft[0], botLeft[1], $square);
     }

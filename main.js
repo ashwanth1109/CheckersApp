@@ -17,4 +17,8 @@ const $rows = $(`.row`);
 //-----GET ALL THE SQUARES-----//
 const $squares = $(`.square`);
 
+//-----IDENTIFIES ALL SQUARES WITH PIECES-----//
+//-----HIGHLIGHTS PIECES OF PLAYER 1 THAT CAN MAKE A MOVE-----//
+//-----ADD A CLICK LISTENER TO HIGHLIGHTED PIECES-----//
+//-----ON CLICK, SHOWS NEXT POSSIBLE MOVE-----//
 findSquaresWithPieces();

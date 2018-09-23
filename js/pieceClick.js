@@ -16,18 +16,31 @@ const selectPiece = $clickedPiece => {
   $clickedPiece.addClass(`selected`);
 };
 
+//-----HIGHLIGHT SQUARE -----//
 const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
+  //-----CHECK IF SQUARE HAS PIECE OR NOT-----//
   if (!$square.data(`squareData`).hasPiece) {
-    $square.removeClass(`dark`).addClass(`darker`);
+    //-----IF SQUARE HAS NO PIECE, PLAYER CAN MOVE-----//
+    //-----REMOVE CLASS DARK AND DARKER TO HIGHTEN IT-----//
+    $square.removeClass(`dark`);
+    $square.addClass(`darker`);
+    //-----ADD ON CLICK HANDLER TO SQUARES THAT ARE DARKENED-----//
     $square.on(`click`, () => {
+      //-----ON CLICK USER HAS CHOSEN TO MAKE A MOVE-----//
+      //-----UNSELECT THE PLAYER PIECE AND MOVE IT TO NEXT SQUARE-----//
       $clickedPiece.removeClass(`selected`).appendTo($square);
+      //-----UNDARKEN THE NEXT SQUARE THAT USER HAS CLICKED-----//
       $square.removeClass(`darker`).addClass(`dark`);
+      //-----REMOVE CLICK LISTENER FROM NEXT SQUARE-----//
       $square.off(`click`);
+      //-----UNDARKEN THE OTHER NEXT SQUARE-----//
       $otherSquare.removeClass(`darker`).addClass(`dark`);
+      //-----REMOVE CLICK LISTENER FROM OTHER NEXT SQUARE-----//
       $otherSquare.off(`click`);
 
       // MOVE HAS BEEN MADE
       // TIME TO CHANGE PLAYER TURN
+      changePlayer();
     });
   }
 };
@@ -43,14 +56,25 @@ const highlightNextPositions = $clickedPiece => {
     const botRight = squareData.botRight;
     //-----CREATE VARIABLES FOR STORING BOT LEFT & RIGHT SQUARES-----//
     //-----GET BOT LEFT SQUARE-----//
-    const $botLeft = $(`.square`).eq((botLeft[0] - 1) * 8 + botLeft[1] - 1);
+    const $botLeft = $(`.square`)
+      .eq((botLeft[0] - 1) * 8 + botLeft[1] - 1)
+      .eq(0);
     //-----GET BOT RIGHT SQUARE-----//
-    const $botRight = $(`.square`).eq((botRight[0] - 1) * 8 + botRight[1] - 1);
+    const $botRight = $(`.square`)
+      .eq((botRight[0] - 1) * 8 + botRight[1] - 1)
+      .eq(0);
+    console.log($botLeft, $botRight);
+    //-----RESET ALL DARKER ELEMENTS-----//
+    $(`.darker`)
+      .removeClass(`darker`)
+      .addClass(`dark`);
     //-----CHECK IF BOT LEFT IS INSIDE THE BOARD-----//
-    if (botLeft[0] && botLeft[1] !== 9) {
+    if (botLeft[0] !== 9 && botLeft[1] !== 0) {
       // Maybe refactor above if condition to add diagonal existence to class?
       //-----CHECK WHETHER TO HIGHLIGHT BOT LEFT-----//
       highlightSquare($botLeft, $botRight, $clickedPiece);
+      console.log($botLeft, $botRight);
+      console.log(botLeft, botRight);
     }
     if (botRight[0] !== 9 && botRight[1] !== 9) {
       //-----CHECK WHETHER TO HIGHLIGHT BOT RIGHT-----//
