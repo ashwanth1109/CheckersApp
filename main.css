@@ -4,8 +4,35 @@
   /* border: 2px solid gold; */
 }
 
+@import url("https://fonts.googleapis.com/css?family=Notable");
+@import url("https://fonts.googleapis.com/css?family=Notable|Source+Sans+Pro");
+
 body {
   width: 100%;
+}
+
+h1 {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+footer > img {
+  width: 20%;
+}
+
+footer > div {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2rem;
 }
 
 #container {
@@ -73,4 +100,25 @@ body {
 
 .noBorder {
   border: 0px;
+}
+
+/*
+  GENERAL STYLES
+*/
+
+/* flex justifyCenter widthP100 height100 */
+.flex {
+  display: flex;
+}
+.justifyCenter {
+  justify-content: center;
+}
+.widthP100 {
+  width: 100%;
+}
+.height100 {
+  height: 100px;
+}
+.alignCenter {
+  align-items: center;
 }
