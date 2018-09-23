@@ -9,6 +9,7 @@ const findSquaresWithPieces = () => {
     //-----IDENTIFY ALL SQUARES WITH PIECES ON THEM-----//
     if (squareData.hasPiece) {
       //-----CHECK IF ITS PLAYER 1 TURN-----//
+      // findPlayerPieces(squareData, $square);
       if (player0Turn) {
         //-----IDENTIFY ALL SQUARES WITH PLAYER 1 PIECES ON THEM-----//
         findPlayer0Pieces(squareData, $square);
