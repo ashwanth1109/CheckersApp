@@ -12,7 +12,7 @@ const addClassHighlight = (row, column, $square) => {
   // NEED TO HANDLE SPECIAL CASE FOR OPPONENT PIECE IS ON NEXT SQUARE // OR MAYBE NOT // ILL FIGURE IT OUT LATER
 };
 
-const findPlayerPieces = squareData => {
+const findPlayer0Pieces = (squareData, $square) => {
   if (squareData.playerId === 0) {
     //-----GET ALL DIAGONAL POSITIONS THAT PLAYER 1 CAN MOVE-----//
     const botLeft = squareData.botLeft;
@@ -27,8 +27,20 @@ const findPlayerPieces = squareData => {
       //-----IF BOT RIGHT AVAILABLE PIECE NEEDS TO BE HIGHLIGHTED-----//
       addClassHighlight(botRight[0], botRight[1], $square);
     }
-  } else if (squareData.playerId === 1) {
-    // HANDLE THIS CASE BRUH!
+  }
+};
+
+const findPlayer1Pieces = (squareData, $square) => {
+  if (squareData.playerId === 1) {
+    const topLeft = squareData.topLeft;
+    const topRight = squareData.topRight;
+
+    if (topLeft[0] !== 0 && topLeft[1] !== 0) {
+      addClassHighlight(topLeft[0], topLeft[1], $square);
+    }
+    if (topRight[0] !== 0 && topRight[1] !== 9) {
+      addClassHighlight(topRight[0], topRight[1], $square);
+    }
   }
 };
 
@@ -45,9 +57,9 @@ const findSquaresWithPieces = () => {
       //-----CHECK IF ITS PLAYER 1 TURN-----//
       if (player0Turn) {
         //-----IDENTIFY ALL SQUARES WITH PLAYER 1 PIECES ON THEM-----//
-        findPlayerPieces(squareData);
+        findPlayer0Pieces(squareData, $square);
       } else {
-        console.log(`reaching highlight pieces for player 2`);
+        findPlayer1Pieces(squareData, $square);
       }
     }
   }

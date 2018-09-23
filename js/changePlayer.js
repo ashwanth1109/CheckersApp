@@ -3,4 +3,9 @@ const changePlayer = () => {
 
   // UNHIGHLIGHT ALL PIECES
   $(`.highlight`).removeClass(`highlight`);
+
+  // CHANGE PLAYER TURN
+  player0Turn = !player0Turn;
+
+  findSquaresWithPieces();
 };
