@@ -78,9 +78,37 @@ const highlightNextPositions = $clickedPiece => {
       highlightSquare($botRight, $botLeft, $clickedPiece);
     }
   }
-  //-----CHECK IF ITS PLAYER 1 TURN-----//
+  //-----ELSE ITS PLAYER 1 TURN-----//
   else {
-    // HANDLE THIS CASE BRUH!
+    //-----GET SQUARE DATA OF CLICKED PIECE-----//
+    const squareData = $clickedPiece.parent().data(`squareData`);
+    //-----BOT LEFT AND BOT RIGHT ARRAYS-----//
+    const topLeft = squareData.topLeft;
+    const topRight = squareData.topRight;
+    //-----CREATE VARIABLES FOR STORING BOT LEFT & RIGHT SQUARES-----//
+    //-----GET TOP LEFT SQUARE-----//
+    const $topLeft = $(`.square`)
+      .eq((topLeft[0] - 1) * 8 + topLeft[1] - 1)
+      .eq(0);
+    //-----GET BOT RIGHT SQUARE-----//
+    const $topRight = $(`.square`)
+      .eq((topRight[0] - 1) * 8 + topRight[1] - 1)
+      .eq(0);
+    //-----RESET ALL DARKER ELEMENTS-----//
+    $(`.darker`)
+      .removeClass(`darker`)
+      .addClass(`dark`);
+    //-----CHECK IF BOT LEFT IS INSIDE THE BOARD-----//
+    if (topLeft[0] !== 0 && topLeft[1] !== 0) {
+      // Maybe refactor above if condition to add diagonal existence to class?
+      console.log(topLeft[0], topLeft[1]);
+      //-----CHECK WHETHER TO HIGHLIGHT BOT LEFT-----//
+      highlightSquare($topLeft, $topRight, $clickedPiece);
+    }
+    if (topRight[0] !== 0 && topRight[1] !== 9) {
+      //-----CHECK WHETHER TO HIGHLIGHT BOT RIGHT-----//
+      highlightSquare($topRight, $topLeft, $clickedPiece);
+    }
   }
 };
 
@@ -92,8 +120,6 @@ const pieceClick = event => {
   if ($clickedPiece.hasClass(`highlight`)) {
     selectPiece($clickedPiece);
     // HIGHLIGHT ALL POSITIONS THAT YOU CAN MOVE TO
-    if (player0Turn) {
-      highlightNextPositions($clickedPiece);
-    }
+    highlightNextPositions($clickedPiece);
   }
 };
