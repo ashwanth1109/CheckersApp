@@ -22,8 +22,7 @@ const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
   if (!$square.data(`squareData`).hasPiece) {
     //-----IF SQUARE HAS NO PIECE, PLAYER CAN MOVE-----//
     //-----REMOVE CLASS DARK AND DARKER TO HIGHTEN IT-----//
-    $square.removeClass(`dark`);
-    $square.addClass(`darker`);
+    $square.removeClass(`dark`).addClass(`darker`);
     //-----ADD ON CLICK HANDLER TO SQUARES THAT ARE DARKENED-----//
     $square.on(`click`, () => {
       //-----ON CLICK USER HAS CHOSEN TO MAKE A MOVE-----//
@@ -72,7 +71,8 @@ const highlightNextPositions = $clickedPiece => {
     //-----RESET ALL DARKER ELEMENTS-----//
     $(`.darker`)
       .removeClass(`darker`)
-      .addClass(`dark`);
+      .addClass(`dark`)
+      .off(`click`);
     //-----CHECK IF BOT LEFT IS INSIDE THE BOARD-----//
     if (botLeft[0] !== 9 && botLeft[1] !== 0) {
       // Maybe refactor above if condition to add diagonal existence to class?
@@ -103,7 +103,8 @@ const highlightNextPositions = $clickedPiece => {
     //-----RESET ALL DARKER ELEMENTS-----//
     $(`.darker`)
       .removeClass(`darker`)
-      .addClass(`dark`);
+      .addClass(`dark`)
+      .off(`click`);
     //-----CHECK IF BOT LEFT IS INSIDE THE BOARD-----//
     if (topLeft[0] !== 0 && topLeft[1] !== 0) {
       // Maybe refactor above if condition to add diagonal existence to class?
