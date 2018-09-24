@@ -128,3 +128,77 @@ footer > div {
 .alignCenter {
   align-items: center;
 }
+
+/*
+  BACKGROUND IMAGE AND IMAGE CREDITS
+*/
+#background-image {
+  background-image: url(./img/bg.jpg);
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#image-credits {
+  color: #fffcf9;
+  font-family: "Source Sans Pro", sans-serif;
+  text-align: right;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+/*
+  INSTRUCTIONS MODAL
+*/
+#instructions {
+  margin: 15vh auto;
+  width: 80vw;
+  height: auto;
+  background-color: #e8e9f3;
+  border-radius: 10px;
+  display: none;
+}
+#instructions-header {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#header-title {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2vw;
+  color: #04151f;
+}
+#header-line {
+  width: 20%;
+  height: 1vw;
+  background-color: #b3001b;
+}
+
+/*
+  SECTION STYLING
+*/
+.instructions-section {
+  width: 90%;
+  height: auto;
+  margin: 50px auto;
+}
+.section-title {
+  background-color: #174259;
+  color: #fffcf9;
+  font-size: 1.5vw;
+  padding: 20px 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  text-transform: uppercase;
+}
+.section-info {
+  margin: 20px 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.3vw;
+  line-height: 1.8vw;
+}

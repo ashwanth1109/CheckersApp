@@ -7,5 +7,8 @@ const changePlayer = () => {
   // CHANGE PLAYER TURN
   player0Turn = !player0Turn;
 
+  // CHECK IF ANY PIECE HAS REACHED THE END OF THE BOARD
+  checkIfPieceReachedEnd();
+
   findSquaresWithPieces();
 };

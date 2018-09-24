@@ -39,6 +39,6 @@ const createBoard = () => {
       }
     }
   }
-  const $img = $(`<img src="../../img/crown.png"/>`);
+  const $img = $(`<img src="./../../img/crown.png"/>`);
   $(`.player1`).append($img);
 };
