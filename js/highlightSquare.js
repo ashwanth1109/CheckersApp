@@ -51,6 +51,27 @@ const highlightSquare = (
     if (!$jumpSquare.data(`squareData`).hasPiece) {
       console.log(`Jump square is empty. Current piece can jump here`);
       $jumpSquare.removeClass(`dark`).addClass(`darker`);
+      $jumpSquare.on(`click`, () => {
+        const initialSquareData = $clickedPiece.parent().data(`squareData`);
+        initialSquareData.hasPiece = false;
+        const playerId = initialSquareData.playerId;
+        initialSquareData.playerId = null;
+        $clickedPiece.parent().data(`squareData`, initialSquareData);
+        $clickedPiece.removeClass(`selected`).appendTo($jumpSquare);
+        const finalSquareData = $jumpSquare.data(`squareData`);
+        finalSquareData.hasPiece = true;
+        finalSquareData.playerId = playerId;
+        $jumpSquare.data(`squareData`, finalSquareData);
+        // UNHIGHLIGHT SQUARES
+        $jumpSquare.removeClass(`darker`).addClass(`dark`);
+        $jumpSquare.off(`click`);
+        $otherSquare.removeClass(`darker`).addClass(`dark`);
+        $otherSquare.off(`click`);
+        // REMOVE PIECE THAT GOT CUT
+        $square.children().remove();
+        // NEED TO UPDATE THE SCORE
+        changePlayer();
+      });
     }
   }
 };
