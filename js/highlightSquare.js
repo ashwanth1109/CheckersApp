@@ -1,0 +1,36 @@
+//-----HIGHLIGHT SQUARE -----//
+const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
+  //-----CHECK IF SQUARE HAS PIECE OR NOT-----//
+  if (!$square.data(`squareData`).hasPiece) {
+    //-----IF SQUARE HAS NO PIECE, PLAYER CAN MOVE-----//
+    //-----REMOVE CLASS DARK AND DARKER TO HIGHTEN IT-----//
+    $square.removeClass(`dark`).addClass(`darker`);
+    //-----ADD ON CLICK HANDLER TO SQUARES THAT ARE DARKENED-----//
+    $square.on(`click`, () => {
+      //-----ON CLICK USER HAS CHOSEN TO MAKE A MOVE-----//
+      //-----UNSELECT THE PLAYER PIECE AND MOVE IT TO NEXT SQUARE-----//
+      const initialSquareData = $clickedPiece.parent().data(`squareData`);
+      initialSquareData.hasPiece = false;
+      const playerId = initialSquareData.playerId;
+      initialSquareData.playerId = null;
+      $clickedPiece.parent().data(`squareData`, initialSquareData);
+      $clickedPiece.removeClass(`selected`).appendTo($square);
+      const finalSquareData = $clickedPiece.parent().data(`squareData`);
+      finalSquareData.hasPiece = true;
+      finalSquareData.playerId = playerId;
+      $clickedPiece.parent().data(`squareData`, finalSquareData);
+      //-----UNDARKEN THE NEXT SQUARE THAT USER HAS CLICKED-----//
+      $square.removeClass(`darker`).addClass(`dark`);
+      //-----REMOVE CLICK LISTENER FROM NEXT SQUARE-----//
+      $square.off(`click`);
+      //-----UNDARKEN THE OTHER NEXT SQUARE-----//
+      $otherSquare.removeClass(`darker`).addClass(`dark`);
+      //-----REMOVE CLICK LISTENER FROM OTHER NEXT SQUARE-----//
+      $otherSquare.off(`click`);
+
+      // MOVE HAS BEEN MADE
+      // TIME TO CHANGE PLAYER TURN
+      changePlayer();
+    });
+  }
+};
