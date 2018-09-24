@@ -130,7 +130,11 @@ footer > div {
 }
 
 /*
-  BACKGROUND IMAGE AND IMAGE CREDITS
+  ====================== BEGINNING OF CSS FILE ======================
+*/
+
+/*
+====================== BACKGROUND IMAGE AND CREDITS ====================== 
 */
 #background-image {
   background-image: url(./img/bg.jpg);
@@ -139,8 +143,8 @@ footer > div {
   height: auto;
   display: flex;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat-y;
+  background-size: contain;
 }
 #image-credits {
   color: #fffcf9;
@@ -151,10 +155,77 @@ footer > div {
 }
 
 /*
-  INSTRUCTIONS MODAL
+  ====================== GAME INFO CONTAINER ====================== 
+*/
+#game-info {
+  width: 80vw;
+  margin: 5vh auto 0 auto;
+  height: auto;
+  background-color: #e8e9f3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  box-sizing: border-box;
+}
+#score-container {
+  background-color: #fffcf9;
+  display: flex;
+}
+.button {
+  width: 200px;
+  background-color: #59c9a5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-left: 5px;
+}
+.button:hover {
+  background-color: #07483c;
+  width: 200px;
+  cursor: pointer;
+  color: #fffcf9;
+}
+#score-title {
+  flex: 1;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #174259;
+  font-family: "Source Sans Pro", sans-serif;
+}
+#score-info {
+  display: flex;
+  width: 100%;
+}
+#black-score {
+  font-family: "Source Sans Pro", sans-serif;
+  height: 70px;
+  flex: 1;
+  background-color: #333333;
+  color: #fffcf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#red-score {
+  font-family: "Source Sans Pro", sans-serif;
+  height: 70px;
+  flex: 1;
+  background-color: #b3001b;
+  color: #fffcf9;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/*
+  ====================== INSTRUCTIONS MODAL ====================== 
 */
 #instructions {
-  margin: 15vh auto;
+  margin: 10vh auto;
   width: 80vw;
   height: auto;
   background-color: #e8e9f3;
@@ -181,7 +252,7 @@ footer > div {
 }
 
 /*
-  SECTION STYLING
+  ====================== INSTRUCTIONS SECTION STYLING ====================== 
 */
 .instructions-section {
   width: 90%;
