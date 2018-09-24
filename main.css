@@ -75,6 +75,9 @@ footer > div {
   border-radius: 25px;
   background-color: #333;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .player1 {
@@ -83,6 +86,9 @@ footer > div {
   border-radius: 25px;
   background-color: #db3a34;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .highlight {
