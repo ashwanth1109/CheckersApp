@@ -25,14 +25,21 @@ const highlightSquare = (
       finalSquareData.hasPiece = true;
       finalSquareData.playerId = playerId;
       $clickedPiece.parent().data(`squareData`, finalSquareData);
-      //-----UNDARKEN THE NEXT SQUARE THAT USER HAS CLICKED-----//
-      $square.removeClass(`darker`).addClass(`dark`);
-      //-----REMOVE CLICK LISTENER FROM NEXT SQUARE-----//
-      $square.off(`click`);
-      //-----UNDARKEN THE OTHER NEXT SQUARE-----//
-      $otherSquare.removeClass(`darker`).addClass(`dark`);
-      //-----REMOVE CLICK LISTENER FROM OTHER NEXT SQUARE-----//
-      $otherSquare.off(`click`);
+      // //-----UNDARKEN THE NEXT SQUARE THAT USER HAS CLICKED-----//
+      // $square.removeClass(`darker`).addClass(`dark`);
+      // //-----REMOVE CLICK LISTENER FROM NEXT SQUARE-----//
+      // $square.off(`click`);
+      const $darker = $(`.darker`);
+      for (const darker of $darker) {
+        $(darker)
+          .removeClass(`darker`)
+          .addClass(`dark`);
+        $(darker).off(`click`);
+      }
+      // //-----UNDARKEN THE OTHER NEXT SQUARE-----//
+      // $otherSquare.removeClass(`darker`).addClass(`dark`);
+      // //-----REMOVE CLICK LISTENER FROM OTHER NEXT SQUARE-----//
+      // $otherSquare.off(`click`);
 
       // MOVE HAS BEEN MADE
       // TIME TO CHANGE PLAYER TURN
