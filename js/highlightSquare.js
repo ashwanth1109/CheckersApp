@@ -69,6 +69,10 @@ const highlightSquare = (
         $otherSquare.off(`click`);
         // REMOVE PIECE THAT GOT CUT
         $square.children().remove();
+        const middleSquareData = $square.data(`squareData`);
+        middleSquareData.hasPiece = false;
+        middleSquareData.playerId = null;
+        $square.data(`squareData`, middleSquareData);
         // NEED TO UPDATE THE SCORE
         changePlayer();
       });
