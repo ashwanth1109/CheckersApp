@@ -25,11 +25,23 @@ const highlightNextPositions = $clickedPiece => {
     if (botLeft[0] !== 9 && botLeft[1] !== 0) {
       // Maybe refactor above if condition to add diagonal existence to class?
       //-----CHECK WHETHER TO HIGHLIGHT BOT LEFT-----//
-      highlightSquare($botLeft, $botRight, $clickedPiece);
+      highlightSquare(
+        $botLeft,
+        $botRight,
+        $clickedPiece,
+        1,
+        $botLeft.data(`squareData`).botLeft
+      );
     }
     if (botRight[0] !== 9 && botRight[1] !== 9) {
       //-----CHECK WHETHER TO HIGHLIGHT BOT RIGHT-----//
-      highlightSquare($botRight, $botLeft, $clickedPiece);
+      highlightSquare(
+        $botRight,
+        $botLeft,
+        $clickedPiece,
+        1,
+        $botRight.data(`squareData`).botRight
+      );
     }
   }
   //-----ELSE ITS PLAYER 1 TURN-----//
@@ -57,12 +69,24 @@ const highlightNextPositions = $clickedPiece => {
     if (topLeft[0] !== 0 && topLeft[1] !== 0) {
       // Maybe refactor above if condition to add diagonal existence to class?
       console.log(topLeft[0], topLeft[1]);
-      //-----CHECK WHETHER TO HIGHLIGHT BOT LEFT-----//
-      highlightSquare($topLeft, $topRight, $clickedPiece);
+      //-----CHECK WHETHER TO HIGHLIGHT TOP LEFT-----//
+      highlightSquare(
+        $topLeft,
+        $topRight,
+        $clickedPiece,
+        0,
+        $topLeft.data(`squareData`).topLeft
+      );
     }
     if (topRight[0] !== 0 && topRight[1] !== 9) {
-      //-----CHECK WHETHER TO HIGHLIGHT BOT RIGHT-----//
-      highlightSquare($topRight, $topLeft, $clickedPiece);
+      //-----CHECK WHETHER TO HIGHLIGHT TOP RIGHT-----//
+      highlightSquare(
+        $topRight,
+        $topLeft,
+        $clickedPiece,
+        0,
+        $topRight.data(`squareData`).topRight
+      );
     }
   }
 };

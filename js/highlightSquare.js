@@ -1,5 +1,11 @@
 //-----HIGHLIGHT SQUARE -----//
-const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
+const highlightSquare = (
+  $square,
+  $otherSquare,
+  $clickedPiece,
+  opponentPlayerId,
+  jumpPosition
+) => {
   //-----CHECK IF SQUARE HAS PIECE OR NOT-----//
   if (!$square.data(`squareData`).hasPiece) {
     //-----IF SQUARE HAS NO PIECE, PLAYER CAN MOVE-----//
@@ -32,5 +38,19 @@ const highlightSquare = ($square, $otherSquare, $clickedPiece) => {
       // TIME TO CHANGE PLAYER TURN
       changePlayer();
     });
+  }
+  //-----HANDLE CASE WHERE THERE IS ENEMY PIECE AND YOU CAN ATTACK-----//
+  else if ($square.data(`squareData`).playerId === opponentPlayerId) {
+    const immediateNextSquareData = $square.data(`squareData`);
+    console.log(`Enemy piece encountered`);
+    console.log(`Need to jump to ${jumpPosition} if you can`);
+    const $jumpSquare = $(`.square`).eq(
+      (jumpPosition[0] - 1) * 8 + jumpPosition[1] - 1
+    );
+    //-----CHECK IF JUMP SQUARE HAS A PIECE-----//
+    if (!$jumpSquare.data(`squareData`).hasPiece) {
+      console.log(`Jump square is empty. Current piece can jump here`);
+      $jumpSquare.removeClass(`dark`).addClass(`darker`);
+    }
   }
 };
