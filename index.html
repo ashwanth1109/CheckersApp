@@ -6,50 +6,135 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>CHECKERS APP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 
 <body>
-  <div class="flex justifyCenter widthP100 height100 alignCenter">
-    <h1>CHECKERS</h1>
-  </div>
-  <div id="container">
-    <div id="game-board">
-
-    </div>
-    <footer>
-      <div>
-        by
+  <div id="background-image">
+    <div id="game-info">
+      <div id="score-info">
+        <div id="score-title">
+          SCORES
+        </div>
+        <div id="new-game" class="button">
+          NEW GAME
+        </div>
+        <div id="instructions-button" class="button">
+          INSTRUCTIONS
+        </div>
       </div>
-      <img src="./img/signature.png" alt="" srcset="">
-    </footer>
+      <div id="score-container">
+        <div class="black scorecard">
+          <div>BLACK:</div>
+          <div id="black-score">0</div>
+        </div>
+        <div class="red scorecard">
+          <div>RED:</div>
+          <div id="red-score">0</div>
+        </div>
+      </div>
+    </div>
+    <div id="game-body">
+      <div id="instructions">
+        <img src="./img/close.png" alt="Close Button" id="close-instructions" />
+        <div id="instructions-header">
+          <div id="header-line"></div>
+          <div id="header-title">
+            HOW TO PLAY CHECKERS
+          </div>
+          <div id="header-line"></div>
+        </div>
+        <!-- SECTION ON MAIN OBJECTIVE -->
+        <div class="instructions-section">
+          <div class="section-title">
+            Main Objective
+          </div>
+          <div class="section-info">
+            <p>Checkers is played on a standard 64 square board (8*8: American). Only the 32 dark colored squares are used in
+              play. Each player begins with 12 pieces or checkers, placed initially on their side of the board.</p>
+            <br>
+            <p>The objective of the game is to capture all of your opponents checkers or position your pieces such that your
+              opponent has no available moves left.</p>
+          </div>
+        </div>
+        <!-- SECTION ON MOVEMENT -->
+        <div class="instructions-section">
+          <div class="section-title">
+            Basic Movement
+          </div>
+          <div class="section-info">
+            <p>Basic Movement is to move a checker one space diagonally forward. You cannot move a checker (also referred to
+              as the warrior piece) backwards unless it becomes a king piece (more info on this below). If a jump is available
+              you must take the jump as described in the section below.</p>
+          </div>
+        </div>
+        <!-- SECTION ON JUMPING -->
+        <div class="instructions-section">
+          <div class="section-title">Jumping</div>
+          <div class="section-info">
+            <p>If one of your opponents checkers is on a forward diagonal next to one of your checkers, and the next space in
+              the same direction is empty, then your checker must jump the opponents checkers and land in the space beyond.
+              Your opponent's checker is captured and removed from the board.</p>
+            <br>
+            <p>After making one jump, your checker might have another jump available from its new position. Your checker must
+              make that jump too. It must continue to jump until there are no more jumps left. Both warrior and king are
+              allowed to take multiple jumps.</p>
+            <br>
+            <p>If at the start of a turn, more than one of your checkers has a jump available, then you may decide which one
+              you will move. But once you have chosen one, it must make all the jumps that it can.</p>
+          </div>
+        </div>
+        <!-- SECTION ON CROWNING -->
+        <div class="instructions-section">
+          <div class="section-title">Crowning</div>
+          <div class="section-info">
+            <p>When one of your checkers reaches the opposite end of the board, it is crowned and becomes a king. Your turn
+              ends there.
+            </p>
+            <br>
+            <p>A king can move backward as well as forward along the diagonals. It can only move a distance of one space.</p>
+            <br>
+            <p>A king can also jump backward and forward. It must jump when possible, and it must take all the jumps that are
+              available with each turn.</p>
+          </div>
+        </div>
+      </div>
+      <div id="image-credits">Photo by Tyler Cosgrove on Unsplash</div>
+      <div id="game-container"></div>
+    </div>
   </div>
+  <!-- JQUERY FILE: MINIFIED -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-  <!-- ------------------------------------------ -->
-  <!-- INTERFACE SCRIPTS: CREATING USER INTERFACE -->
-  <script src="./js/interface/createBoard.js"></script>
-  <script src="./js/interface/addPlayerPiece.js"></script>
-  <script src="./js/interface/checkIfPieceReachedEnd.js"></script>
-  <script src="./js/interface/changePlayer.js"></script>
-  <script src="./js/interface/selectPiece.js"></script>
-  <script src="./js/interface/highlightSquare.js"></script>
-  <script src="./js/interface/highlightNextPositions.js"></script>
-  <script src="./js/interface/addClassHighlight.js"></script>
-  <!-- ------------------------------------------ -->
-  <!-- CLASS SCRIPTS: SQUARE - ROW POSITION, COLUMN POSITION + OTHER METHODS -->
+  <!-- IMPORT IN CLASSES -->
   <script src="./js/classes/square.js"></script>
-  <!-- ------------------------------------------ -->
-  <!-- CLICK HANDLERS -->
-  <script src="./js/clickHandlers/pieceClick.js"></script>
-  <!-- ------------------------------------------ -->
-  <!-- CORE CODE -->
-  <script src="./js/logic/findSquaresWithPieces.js"></script>
-  <script src="./js/logic/findPlayer0Pieces.js"></script>
-  <script src="./js/logic/findPlayer1Pieces.js"></script>
-  <!-- ------------------------------------------ -->
+  <script src="./js/classes/checker.js"></script>
+  <!-- CREATE A GAME BOARD AND ADD CHECKERS -->
+  <script src="./js/interface/createBoard.js"></script>
+  <script src="./js/interface/addCheckers.js"></script>
+  <!-- ANIMATE INSTRUCTIONS INTO AND OUT OF VIEW -->
+  <script src="./js/interface/showInstructions.js"></script>
+  <script src="./js/interface/hideInstructions.js"></script>
+  <!-- START A NEW GAME -->
+  <script src="./js/logic/startNewGame.js"></script>
+  <!-- GET PLAYER PIECES -->
+  <script src="./js/logic/getPlayerPieces.js"></script>
+  <!-- CHANGE PLAYER TURN -->
+  <script src="./js/logic/changePlayerTurn.js"></script>
+  <!-- ADD CLICK EVENT HANDLER TO HIGHLIGHTED PIECES -->
+  <script src="./js/clickHandlers/clickHighlightedChecker.js"></script>
+  <!-- ADD CLASS HIGHLIGHT TO CHECKER -->
+  <script src="./js/interface/addHighlightToChecker.js"></script>
+  <!-- ADD CLASS HIGLIGHT TO SQUARE -->
+  <script src="./js/interface/addHighlightToSquare.js"></script>
+  <!-- CHECK FOR ALL DIAGONALS -->
+  <script src="./js/logic/checkForAllDiagonals.js"></script>
+  <!-- CHECK FOR FORWARD DIAGONALS -->
+  <script src="./js/logic/checkForForwardDiagonals.js"></script>
+  <!-- CHECK FOR MOVES AVAILABLE -->
+  <script src="./js/logic/checkForMovesAvailable.js"></script>
   <!-- MAIN JS FILE -->
-  <script src="main.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
