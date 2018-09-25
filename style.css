@@ -34,6 +34,13 @@
   top: 140px;
   right: 10px;
   z-index: 0;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30px;
+  justify-content: space-between;
+}
+#image-credits > div {
 }
 
 /*

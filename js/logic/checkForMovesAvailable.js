@@ -3,7 +3,7 @@ const checkForMovesAvailable = () => {
 
   const $checkers = getPlayerPieces();
 
-  // console.log($checkers);
+  console.log($checkers);
   for (const checker of $checkers) {
     // console.log($(checker).data(`data`));
     const $checker = $(checker);
@@ -12,6 +12,6 @@ const checkForMovesAvailable = () => {
     } else {
       checkForForwardDiagonals($checker);
     }
-    // console.log($checker.data(`data`).isItKing);
+    console.log($checker.data(`data`).isItKing);
   }
 };

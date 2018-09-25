@@ -2,7 +2,8 @@
 
 class Square {
   convertToValue(row, column) {
-    if (row < 1 || row > 8 || column < 1 || column > 8) {
+    console.log(typeof row);
+    if (row === 0 || row === 9 || column === 0 || column === 9) {
       return null;
     }
     return (row - 1) * 8 + column - 1;
