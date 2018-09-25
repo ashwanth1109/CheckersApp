@@ -29,18 +29,15 @@ const checkForForwardDiagonals = $checker => {
   if (currentPlayer === 1) {
     // CHECK TOP LEFT SQUARE FIRST
     // CHECK FOR BOUNDARY CONDITIONS
-    if (squareData.topLeftArray[0] === 0 || squareData.topLeftArray[1] === 0) {
-      // OUT OF BOUNDS
+    if (squareData.topLeft === null) {
+      // console.log(`Top Left of square is out of bounds`);
     } else {
       const $nextSquare = $squares.eq(squareData.topLeft);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
         const $jumpSquare = $squares.eq($nextSquare.data(`data`).topLeft);
-        if (
-          $jumpSquare.data(`data`).topLeftArray[0] === 0 ||
-          $jumpSquare.data(`data`).topLeftArray[1] === 0
-        ) {
-          // OUT OF BOUNDS
+        if ($jumpSquare.data(`data`).topLeft === null) {
+          // console.log(`Top Left of next square is out of bounds`);
         } else {
           checkIfOpponentPiece($nextSquare, $square, $jumpSquare);
         }
@@ -52,21 +49,15 @@ const checkForForwardDiagonals = $checker => {
 
     // CHECK TOP RIGHT SQUARE NEXT
     // CHECK FOR BOUNDARY CONDITIONS
-    if (
-      squareData.topRightArray[0] === 0 ||
-      squareData.topRightArray[1] === gameSize + 1
-    ) {
-      // OUT OF BOUNDS
+    if (squareData.topRight === null) {
+      // console.log(`Top right of square is out of bounds`);
     } else {
       const $nextSquare = $squares.eq(squareData.topRight);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
         const $jumpSquare = $squares.eq($nextSquare.data(`data`).topRight);
-        if (
-          $jumpSquare.data(`data`).topRightArray[0] === 0 ||
-          $jumpSquare.data(`data`).topRightArray[1] === gameSize + 1
-        ) {
-          // OUT OF BOUNDS
+        if ($jumpSquare.data(`data`).topRight === null) {
+          // console.log(`Top right of square is out of bounds`);
         } else {
           checkIfOpponentPiece($nextSquare, $square, $jumpSquare);
         }
@@ -78,21 +69,15 @@ const checkForForwardDiagonals = $checker => {
   } else if (currentPlayer === 2) {
     // CHECK BOT LEFT SQUARE FIRST
     // CHECK FOR BOUNDARY CONDITIONS
-    if (
-      squareData.botLeftArray[0] === gameSize + 1 ||
-      squareData.botLeftArray[1] === 0
-    ) {
-      // OUT OF BOUNDS
+    if (squareData.botLeft === null) {
+      // console.log(`Bot Left of square is out of bounds`);
     } else {
       const $nextSquare = $squares.eq(squareData.botLeft);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
         const $jumpSquare = $squares.eq($nextSquare.data(`data`).botLeft);
-        if (
-          $jumpSquare.data(`data`).botLeftArray[0] === gameSize + 1 ||
-          $jumpSquare.data(`data`).botLeftArray[1] === 0
-        ) {
-          // OUT OF BOUNDS
+        if ($jumpSquare.data(`data`).botLeft === null) {
+          // console.log(`Bot Left of next square is out of bounds`);
         } else {
           checkIfOpponentPiece($nextSquare, $square, $jumpSquare);
         }
@@ -104,21 +89,15 @@ const checkForForwardDiagonals = $checker => {
 
     // CHECK BOT RIGHT SQUARE NEXT
     // CHECK FOR BOUNDARY CONDITIONS
-    if (
-      squareData.botRightArray[0] === gameSize + 1 ||
-      squareData.botRightArray[1] === gameSize + 1
-    ) {
-      // OUT OF BOUNDS
+    if (squareData.botRight === null) {
+      // console.log(`Bot right of square is out of bounds`);
     } else {
       const $nextSquare = $squares.eq(squareData.botRight);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
         const $jumpSquare = $squares.eq($nextSquare.data(`data`).botRight);
-        if (
-          $jumpSquare.data(`data`).botRightArray[0] === gameSize + 1 ||
-          $jumpSquare.data(`data`).botRightArray[1] === gameSize + 1
-        ) {
-          // OUT OF BOUNDS
+        if ($jumpSquare.data(`data`).botRight === null) {
+          // console.log(`Bot right of next square is out of bounds`);
         } else {
           checkIfOpponentPiece($nextSquare, $square, $jumpSquare);
         }
