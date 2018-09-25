@@ -1,8 +1,9 @@
 const checkForMovesAvailable = () => {
-  console.log(`checking for moves available`);
+  // console.log(`checking for moves available`);
 
   const $checkers = getPlayerPieces();
 
+  // console.log($checkers);
   for (const checker of $checkers) {
     // console.log($(checker).data(`data`));
     const $checker = $(checker);

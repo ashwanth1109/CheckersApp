@@ -1,28 +1,21 @@
 const checkForForwardDiagonals = $checker => {
-  // console.log(`checking for forward diagonals`);
-
   const $square = $checker.parent();
   const squareData = $square.data(`data`);
-  // console.log($square.data(`data`));
 
   // PLAYER 1
   if (currentPlayer === 1) {
     // CHECK TOP LEFT SQUARE FIRST
     // CHECK FOR BOUNDARY CONDITIONS
     if (squareData.topLeftArray[0] === 0 || squareData.topLeftArray[1] === 0) {
-      console.log(`top left square is out of bounds`);
+      // OUT OF BOUNDS
     } else {
-      console.log(squareData.topLeft);
       const $nextSquare = $squares.eq(squareData.topLeft);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
       } else {
-        console.log($checker.data(`data`));
-        $checker.data(`data`).jumpPositions.push($nextSquare);
-        // Add class highlight to checker
+        $checker.data(`data`).jumpPositions[0] = $nextSquare;
         addHighlightToChecker($checker);
       }
-      // if ($squares.eq(squareData.topLeft))
     }
 
     // CHECK TOP RIGHT SQUARE NEXT
@@ -31,14 +24,13 @@ const checkForForwardDiagonals = $checker => {
       squareData.topRightArray[0] === 0 ||
       squareData.topRightArray[1] === gameSize + 1
     ) {
-      console.log(`top right square is out of bounds`);
+      // OUT OF BOUNDS
     } else {
       const $nextSquare = $squares.eq(squareData.topRight);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
       } else {
-        $checker.data(`data`).jumpPositions.push($nextSquare);
-        // Add class highlight to checker
+        $checker.data(`data`).jumpPositions[1] = $nextSquare;
         addHighlightToChecker($checker);
       }
     }
@@ -49,14 +41,13 @@ const checkForForwardDiagonals = $checker => {
       squareData.botLeftArray[0] === gameSize + 1 ||
       squareData.botLeftArray[1] === 0
     ) {
-      console.log(`bot left square is out of bounds`);
+      // OUT OF BOUNDS
     } else {
       const $nextSquare = $squares.eq(squareData.botLeft);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
       } else {
-        $checker.data(`data`).jumpPositions.push($nextSquare);
-        // Add class highlight to checker
+        $checker.data(`data`).jumpPositions[0] = $nextSquare;
         addHighlightToChecker($checker);
       }
     }
@@ -67,13 +58,13 @@ const checkForForwardDiagonals = $checker => {
       squareData.botRightArray[0] === gameSize + 1 ||
       squareData.botRightArray[1] === gameSize + 1
     ) {
-      console.log(`bot right square is out of bounds`);
+      // OUT OF BOUNDS
     } else {
       const $nextSquare = $squares.eq(squareData.botRight);
       if ($nextSquare.data(`data`).hasPiece) {
         // Check if its an opponent piece
       } else {
-        $checker.data(`data`).jumpPositions.push($nextSquare);
+        $checker.data(`data`).jumpPositions[1] = $nextSquare;
         addHighlightToChecker($checker);
       }
     }

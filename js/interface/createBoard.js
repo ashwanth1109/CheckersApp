@@ -1,5 +1,5 @@
 const createBoard = () => {
-  console.log(`creating board`);
+  // console.log(`creating board`);
   //-----FOR LOOP TO CREATE ROWS-----//
   for (let i = 1; i <= gameSize; i++) {
     //-----ROWS HAVE CLASS OF ROW: APPEND TO GAME BOARD-----//
