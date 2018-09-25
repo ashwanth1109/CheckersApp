@@ -4,6 +4,13 @@ const checkIfOpponentPiece = ($nextSquare, $square, $jumpSquare) => {
     // Check if jump square has a piece
     if ($jumpSquare.data(`data`).hasPiece === false) {
       // jump
+      console.log($square.children().data(`data`));
+      // $square.children()
+      $square
+        .children()
+        .data(`data`)
+        .jumpPositions.push($jumpSquare);
+      addHighlightToChecker($square.children());
     }
   }
 };
