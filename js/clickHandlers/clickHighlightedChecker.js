@@ -11,7 +11,9 @@ const clickHighlightedChecker = event => {
   const $currentSquare = $checker.parent();
 
   const $jumpSquare1 = $checker.data(`data`).jumpPositions[0];
+  const $opponentChecker1 = $checker.data(`data`).checkersThatCanBeCaptured[0];
   const $jumpSquare2 = $checker.data(`data`).jumpPositions[1];
+  const $opponentChecker2 = $checker.data(`data`).checkersThatCanBeCaptured[1];
 
   const $moveSquare1 = $checker.data(`data`).movePositions[0];
   const $moveSquare2 = $checker.data(`data`).movePositions[1];
@@ -27,6 +29,8 @@ const clickHighlightedChecker = event => {
         //------------------------------------------------------------------------------------
         // // Capture opponent checker with your checker
         //------------------------------------------------------------------------------------
+        $opponentChecker1.parent().data(`data`).hasPiece = false;
+        $opponentChecker1.remove();
         const jumpSquare1Data = $jumpSquare1.data(`data`);
         jumpSquare1Data.hasPiece = true;
         $jumpSquare1.data(`data`, jumpSquare1Data);
@@ -37,6 +41,7 @@ const clickHighlightedChecker = event => {
           $jumpSquare2.off(`click`);
         }
         $checker.data(`data`).jumpPositions = [];
+        $checker.data(`data`).checkersThatCanBeCaptured = [];
         //------------------------------------------------------------------------------------
         // Check if checker can jump one more time: Handle this case here bruh!
         //------------------------------------------------------------------------------------
@@ -56,6 +61,8 @@ const clickHighlightedChecker = event => {
         //------------------------------------------------------------------------------------
         // Need to capture opponent checker with your checker
         //------------------------------------------------------------------------------------
+        $opponentChecker2.parent().data(`data`).hasPiece = false;
+        $opponentChecker2.remove();
         const jumpSquare2Data = $jumpSquare2.data(`data`);
         jumpSquare2Data.hasPiece = true;
         $jumpSquare2.data(`data`, jumpSquare2Data);
@@ -66,6 +73,7 @@ const clickHighlightedChecker = event => {
           $jumpSquare1.off(`click`);
         }
         $checker.data(`data`).jumpPositions = [];
+        $checker.data(`data`).checkersThatCanBeCaptured = [];
         //------------------------------------------------------------------------------------
         // Need to check if checker can jump one more and handle this case
         //------------------------------------------------------------------------------------

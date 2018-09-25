@@ -2,6 +2,9 @@
 
 class Square {
   convertToValue(row, column) {
+    if (row < 1 || row > 8 || column < 1 || column > 8) {
+      return null;
+    }
     return (row - 1) * 8 + column - 1;
   }
 
