@@ -2,7 +2,7 @@
 
 class Square {
   convertToValue(row, column) {
-    console.log(typeof row);
+    // console.log(typeof row);
     if (row === 0 || row === 9 || column === 0 || column === 9) {
       return null;
     }

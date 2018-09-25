@@ -1,17 +1,33 @@
+//------------------------------------------------------------------------------------
+// Function
+//------------------------------------------------------------------------------------
 const checkForMovesAvailable = () => {
-  // console.log(`checking for moves available`);
-
+  //------------------------------------------------------------------------------------
+  // Get all player pieces for current player (e.g. black for player 1 and red for player 2)
+  //------------------------------------------------------------------------------------
   const $checkers = getPlayerPieces();
 
-  console.log($checkers);
+  //------------------------------------------------------------------------------------
+  // Iterate through the array of player pieces
+  //------------------------------------------------------------------------------------
   for (const checker of $checkers) {
-    // console.log($(checker).data(`data`));
+    //------------------------------------------------------------------------------------
+    // Convert each checker to a jQuery Object
+    //------------------------------------------------------------------------------------
     const $checker = $(checker);
+    //------------------------------------------------------------------------------------
+    // Check if current checker piece is king piece or not
+    //------------------------------------------------------------------------------------
     if ($checker.data(`data`).isItKing) {
-      checkForAllDiagonals($checker);
+      //------------------------------------------------------------------------------------
+      // If King piece, then checker can move in 4 diagonals
+      //------------------------------------------------------------------------------------
+      checkForAllDiagonals($checker); // DEAD END
     } else {
+      //------------------------------------------------------------------------------------
+      // Else, king piece can only move in forward (2) diagonals
+      //------------------------------------------------------------------------------------
       checkForForwardDiagonals($checker);
     }
-    console.log($checker.data(`data`).isItKing);
   }
 };

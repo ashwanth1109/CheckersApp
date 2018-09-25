@@ -6,7 +6,8 @@ class Checker {
     this.isItKing = false;
     this.jumpPositions = [];
     this.checkersThatCanBeCaptured = [];
-    this.checkersCaptured = [];
-    this.movePositions = [];
+    this.checkersCaptured = []; // ARE YOU REALLY USING THIS??
+    this.movePosition1 = null;
+    this.movePosition2 = null;
   }
 }
