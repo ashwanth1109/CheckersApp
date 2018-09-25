@@ -1,5 +1,4 @@
 const resetHighlightSquares = () => {
-  console.log(`Resetting highlight squares`);
   //------------------------------------------------------------------------------------
   // Remove class highlight to reset highlight squares to check for new highlight squares based on click event
   //------------------------------------------------------------------------------------

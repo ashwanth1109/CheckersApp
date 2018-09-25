@@ -5,30 +5,23 @@ const changePlayerTurn = () => {
     currentPlayer = 1;
   }
 
-  $(`.highlightChecker`).removeClass(`highlightChecker`);
+  $(`.highlightChecker`)
+    .removeClass(`highlightChecker`)
+    .off(`click`);
 
   for (const checker of $(`.player`)) {
     const $checker = $(checker);
     const resetData = $checker.data(`data`);
     resetData.jumpPositions = [];
-    resetData.movePositions = [];
+    resetData.movePosition1 = null;
+    resetData.movePosition2 = null;
     $checker.data(`data`, resetData);
   }
 
+  //------------------------------------------------------------------------------------
+  // IF YOU WANT TO LOG THE STATE OF THE BOARD, THEN UNCOMMENT THE LINE BELOW
+  //------------------------------------------------------------------------------------
+  // logStateOfBoard();
+
   checkForMovesAvailable();
-
-  // for (const square of $squares) {
-  //   const $square = $(square);
-  //   const squareData = $square.data(`data`);
-  //   console.log(
-  //     `The square at row ${squareData.row} and column ${
-  //       squareData.column
-  //     } has piece - ${squareData.hasPiece}`
-  //   );
-  // }
-
-  // for (const checker of $(`.player`)) {
-  //   const $checker = $(checker);
-  //   console.log($checker.data(`data`));
-  // }
 };

@@ -9,7 +9,6 @@ const clickHandlerToHighlightSquare = (
   $opponentChecker
 ) => {
   // REFACTOR THIS
-
   $nextSquare1.on(`click`, () => {
     //------------------------------------------------------------------------------------
     // Reset all previously highlighted squares
