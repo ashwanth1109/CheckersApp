@@ -6,6 +6,9 @@ let instructionsShown = false;
 let gameSize = 8;
 //-----Create a variable that keeps track of which players turn it is-----//
 let currentPlayer = 1;
+//-----Create variables to keep track of scores for black and red checkers-----//
+let blackScore = 0;
+let redScore = 0;
 
 //------------------------------------------------------------------------------------
 // Create board with checkers on them

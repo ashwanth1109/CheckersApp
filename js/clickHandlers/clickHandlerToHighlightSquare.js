@@ -28,6 +28,13 @@ const clickHandlerToHighlightSquare = (
     if ($opponentChecker) {
       $opponentChecker.parent().data(`data`).hasPiece = false;
       $opponentChecker.remove();
+      if (currentPlayer === 1) {
+        blackScore++;
+        $(`#black-score`).text(blackScore);
+      } else {
+        redScore++;
+        $(`#red-score`).text(redScore);
+      }
     }
     //------------------------------------------------------------------------------------
     // Set next square 1's hasPiece to true. Remove highlightSquare class from next square 1
