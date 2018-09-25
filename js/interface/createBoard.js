@@ -16,15 +16,15 @@ const createBoard = () => {
       //-----ADD CLASS DARK TO ALTERNATING SQUARES-----//
       if (!((i + j) % 2)) {
         $square.addClass(`dark`);
-        //-----ADD PLAYER 1 PIECES ON TO THE BOARD-----//
-        if (i < 4) {
-          //-----ADD PLAYER 1 PIECES AND SET CLICK HANDLER-----//
-          addCheckers($square, 1);
-        }
         //-----ADD PLAYER 2 PIECES ON TO THE BOARD-----//
-        else if (i > 5) {
+        if (i < 4) {
           //-----ADD PLAYER 2 PIECES AND SET CLICK HANDLER-----//
           addCheckers($square, 2);
+        }
+        //-----ADD PLAYER 1 PIECES ON TO THE BOARD-----//
+        else if (i > 5) {
+          //-----ADD PLAYER 1 PIECES AND SET CLICK HANDLER-----//
+          addCheckers($square, 1);
         }
       }
       //-----ADD CLASS LIGHT TO ALTERNATING SQUARES-----//

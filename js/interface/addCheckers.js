@@ -4,11 +4,11 @@ const addCheckers = ($square, playerId) => {
   if (playerId === 1) {
     const data = new Checker(playerId);
     $checker.data(`data`, data);
-    $checker.addClass(`red`);
+    $checker.addClass(`black`);
   } else if (playerId === 2) {
     const data = new Checker(playerId);
     $checker.data(`data`, data);
-    $checker.addClass(`black`);
+    $checker.addClass(`red`);
   } else {
     console.log(`ERROR: Player ID needs to be either 1 or 2`);
   }

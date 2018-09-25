@@ -10,8 +10,8 @@ const clickHighlightedChecker = event => {
   const $checker = $(event.currentTarget);
   const $currentSquare = $checker.parent();
 
-  const $jumpSquare1 = $checker.data(`data`).jumpPositions[0];
-  const $jumpSquare2 = $checker.data(`data`).jumpPositions[1];
+  const $jumpSquare1 = $checker.data(`data`).movePositions[0];
+  const $jumpSquare2 = $checker.data(`data`).movePositions[1];
 
   if ($jumpSquare1) {
     addHighlightToSquare($jumpSquare1);
@@ -29,7 +29,7 @@ const clickHighlightedChecker = event => {
         $jumpSquare2.removeClass(`highlightSquare`).addClass(`dark`);
         $jumpSquare2.off(`click`);
       }
-      $checker.data(`data`).jumpPositions = [];
+      $checker.data(`data`).movePositions = [];
       changePlayerTurn();
     });
   }
@@ -49,7 +49,7 @@ const clickHighlightedChecker = event => {
         $jumpSquare1.removeClass(`highlightSquare`).addClass(`dark`);
         $jumpSquare1.off(`click`);
       }
-      $checker.data(`data`).jumpPositions = [];
+      $checker.data(`data`).movePositions = [];
       changePlayerTurn();
     });
   }
