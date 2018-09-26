@@ -7,6 +7,10 @@ const clickHandlerToHighlightedChecker = $checker => {
     // Reset all previously highlighted squares
     //------------------------------------------------------------------------------------
     resetHighlightSquares();
+    //------------------------------------------------------------------------------------
+    // Add selectChecker class to indicate that checker has been clicked
+    //------------------------------------------------------------------------------------
+    addSelectedToChecker($checker);
 
     //------------------------------------------------------------------------------------
     // Get checker that was clicked

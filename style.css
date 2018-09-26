@@ -277,3 +277,7 @@ ui-accordion-content {
   background-color: #07483c;
   cursor: pointer;
 }
+
+.selectChecker {
+  border: 3px solid yellow;
+}

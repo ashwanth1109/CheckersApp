@@ -1,3 +1,14 @@
+const endGame = winner => {
+  console.log(`Game is over`);
+  if (winner === 1) {
+    console.log(`Player Black has won the game`);
+  } else if (winner === 2) {
+    console.log(`Player Red has won the game`);
+  } else {
+    console.error(`Incorrect value of param passed into function endGame()`);
+  }
+};
+
 const changePlayerTurn = () => {
   if (currentPlayer === 1) {
     currentPlayer = 2;
@@ -5,9 +16,7 @@ const changePlayerTurn = () => {
     currentPlayer = 1;
   }
 
-  $(`.highlightChecker`)
-    .removeClass(`highlightChecker`)
-    .off(`click`);
+  resetCheckerClass();
 
   for (const checker of $(`.player`)) {
     const $checker = $(checker);
