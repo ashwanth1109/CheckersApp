@@ -1,15 +1,16 @@
-const endGame = winner => {
-  console.log(`Game is over`);
-  if (winner === 1) {
-    console.log(`Player Black has won the game`);
-  } else if (winner === 2) {
-    console.log(`Player Red has won the game`);
-  } else {
-    console.error(`Incorrect value of param passed into function endGame()`);
-  }
-};
-
 const changePlayerTurn = () => {
+  //------------------------------------------------------------------------------------
+  // Check for win condition
+  //------------------------------------------------------------------------------------
+  if (blackScore === 12) {
+    endGame(1);
+  } else if (redScore === 12) {
+    endGame(2);
+  }
+
+  //------------------------------------------------------------------------------------
+  // Alternate player turn
+  //------------------------------------------------------------------------------------
   if (currentPlayer === 1) {
     currentPlayer = 2;
   } else {

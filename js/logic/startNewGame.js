@@ -1,5 +1,8 @@
 const startNewGame = () => {
-  console.log(`starting a new game`);
+  if ($(`#game-over-container`).css(`display`) === `flex`) {
+    $(`#game-over-container`).css(`display`, `none`);
+  }
+
   $gameBoard.children().remove();
   createBoard();
   //------------------------------------------------------------------------------------

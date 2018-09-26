@@ -148,6 +148,17 @@
       <div id="game-container"></div>
     </div>
   </div>
+  <div class="absolute-center">
+    <div id="game-over-container">
+      <div id="game-over">
+        <h2>GAME OVER</h2>
+      </div>
+      <div>
+        <p>Player
+          <span id="game-winner"></span> has won the game</p>
+      </div>
+    </div>
+  </div>
   <!-- JQUERY FILE: MINIFIED -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
@@ -167,6 +178,8 @@
   <script src="./js/logic/logStateOfBoard.js"></script>
   <!-- RESET ALL CHECKER CLASSES THAT WERE ADDED -->
   <script src="./js/interface/resetCheckerClass.js"></script>
+  <!-- END GAME -->
+  <script src="./js/logic/endGame.js"></script>
   <!-- CHANGE PLAYER TURN -->
   <script src="./js/logic/changePlayerTurn.js"></script>
   <!-- CHECK IF CHECKER IS AT OPPONENT EDGE - CROWNING -->
