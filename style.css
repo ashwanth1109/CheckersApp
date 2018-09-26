@@ -357,6 +357,9 @@
 .board-state-2 {
   transform: rotate(360deg);
 }
+.rotateChecker {
+  transform: rotate(180deg);
+}
 
 /*
   ====================== ROTATE BOARD ANIMATION ====================== 
