@@ -182,13 +182,13 @@
 /*
   Outer container of the accordion
 */
-ui-accordion {
+.ui-accordion {
   /* display: flex; */
 }
 /*
   Header of the accordion
 */
-ui-accordion-header {
+.ui-accordion-header {
   background-color: #174259;
   color: #fffcf9;
   font-size: 1.5vw;
@@ -196,19 +196,20 @@ ui-accordion-header {
   text-transform: uppercase;
   cursor: pointer;
 }
-ui-accordion-header-active {
+.ui-accordion-header-active {
   /* display: flex; */
 }
-ui-accordion-header-collapsed {
+.ui-accordion-header-collapsed {
   /* display: flex; */
 }
-ui-accordion-header-icon {
+.ui-accordion-header-icon {
   /* display: flex; */
 }
-ui-accordion-content {
+.ui-accordion-content {
   margin: 20px 0;
   font-size: 1.3vw;
   line-height: 1.8vw;
+  overflow: visible;
 }
 
 /*
@@ -219,6 +220,7 @@ ui-accordion-content {
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -324,4 +326,31 @@ ui-accordion-content {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*
+  ====================== GHOST CONTAINER STYLING ====================== 
+*/
+#ghost-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/*
+  ====================== ROTATE BOARD ANIMATION ====================== 
+*/
+@keyframes rotateBoard {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.6);
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: ;
+  }
 }
