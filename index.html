@@ -44,6 +44,48 @@
           </div>
           <div id="header-line"></div>
         </div>
+        <div class="instructions-section">
+          <div id="accordion">
+            <h3>Main Objective</h3>
+            <div>
+              <p>Checkers is played on a standard 64 square board (8*8: American). Only the 32 dark colored squares are used
+                in play. Each player begins with 12 pieces or checkers, placed initially on their side of the board.</p>
+              <br>
+              <p>The objective of the game is to capture all of your opponents checkers or position your pieces such that your
+                opponent has no available moves left.</p>
+            </div>
+            <h3>Basic Movement</h3>
+            <div>
+              <p>Basic Movement is to move a checker one space diagonally forward. You cannot move a checker (also referred
+                to as the warrior piece) backwards unless it becomes a king piece (more info on this below). If a jump is
+                available you must take the jump as described in the section below.</p>
+            </div>
+            <h3>Jumping</h3>
+            <div>
+              <p>If one of your opponents checkers is on a forward diagonal next to one of your checkers, and the next space
+                in the same direction is empty, then your checker must jump the opponents checkers and land in the space
+                beyond. Your opponent's checker is captured and removed from the board.</p>
+              <br>
+              <p>After making one jump, your checker might have another jump available from its new position. Your checker must
+                make that jump too. It must continue to jump until there are no more jumps left. Both warrior and king are
+                allowed to take multiple jumps.</p>
+              <br>
+              <p>If at the start of a turn, more than one of your checkers has a jump available, then you may decide which one
+                you will move. But once you have chosen one, it must make all the jumps that it can.</p>
+            </div>
+            <h3>Crowning</h3>
+            <div>
+              <p>When one of your checkers reaches the opposite end of the board, it is crowned and becomes a king. Your turn
+                ends there.
+              </p>
+              <br>
+              <p>A king can move backward as well as forward along the diagonals. It can only move a distance of one space.</p>
+              <br>
+              <p>A king can also jump backward and forward. It must jump when possible, and it must take all the jumps that
+                are available with each turn.</p>
+            </div>
+          </div>
+        </div>
         <!-- SECTION ON MAIN OBJECTIVE -->
         <div class="instructions-section">
           <div class="section-title">
@@ -109,6 +151,7 @@
   <!-- JQUERY FILE: MINIFIED -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- IMPORT IN CLASSES -->
   <script src="./js/classes/square.js"></script>
   <script src="./js/classes/checker.js"></script>

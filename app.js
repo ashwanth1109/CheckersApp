@@ -1,5 +1,12 @@
 // console.log($);
 
+//------------------------------------------------------------------------------------
+// Convert each instruction section into accordion element by getting #accordion
+//------------------------------------------------------------------------------------
+$("#accordion").accordion({
+  icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
+});
+
 //-----Create variable that keeps track of whether instructions are shown or not-----//
 let instructionsShown = false;
 //-----Create a variable that controls the size of the game board-----//

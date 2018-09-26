@@ -49,12 +49,15 @@
 
 #game-info {
   width: 90%;
-  margin: 0 auto;
+  left: 5%;
+  right: 5%;
   height: auto;
   border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  z-index: 3;
 }
 
 #score-info {
@@ -166,6 +169,41 @@
   text-transform: uppercase;
 }
 .section-info {
+  margin: 20px 0;
+  font-size: 1.3vw;
+  line-height: 1.8vw;
+}
+
+/*
+  ====================== ACCORDION STYLING ====================== 
+*/
+/*
+  Outer container of the accordion
+*/
+ui-accordion {
+  /* display: flex; */
+}
+/*
+  Header of the accordion
+*/
+ui-accordion-header {
+  background-color: #174259;
+  color: #fffcf9;
+  font-size: 1.5vw;
+  padding: 20px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+ui-accordion-header-active {
+  /* display: flex; */
+}
+ui-accordion-header-collapsed {
+  /* display: flex; */
+}
+ui-accordion-header-icon {
+  /* display: flex; */
+}
+ui-accordion-content {
   margin: 20px 0;
   font-size: 1.3vw;
   line-height: 1.8vw;
