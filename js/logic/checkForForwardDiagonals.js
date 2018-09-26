@@ -3,7 +3,7 @@
 //------------------------------------------------------------------------------------
 const checkForForwardDiagonals = $checker => {
   //------------------------------------------------------------------------------------
-  // Identify all square with checker pieces for a particular player & get its data object
+  // Get the checkers parent square and its data object
   //------------------------------------------------------------------------------------
   const $square = $checker.parent();
   const squareData = $square.data(`data`);
