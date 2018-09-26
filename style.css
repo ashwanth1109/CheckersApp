@@ -337,20 +337,56 @@
 }
 
 /*
+  ====================== GAME BOARD ====================== 
+*/
+.rotate-board-1 {
+  animation: rotateBoard1;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.board-state-1 {
+  transform: rotate(180deg);
+}
+.rotate-board-2 {
+  animation: rotateBoard2;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.board-state-2 {
+  transform: rotate(360deg);
+}
+
+/*
   ====================== ROTATE BOARD ANIMATION ====================== 
 */
-@keyframes rotateBoard {
+@keyframes rotateBoard1 {
   0% {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
   }
   25% {
-    transform: scale(0.6);
-    transform: rotate(0deg);
+    transform: scale(0.6) rotate(0deg);
   }
   75% {
-    transform: rotate(180deg);
+    transform: scale(0.6) rotate(180deg);
   }
   100% {
-    transform: ;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes rotateBoard2 {
+  0% {
+    transform: scale(1) rotate(180deg);
+  }
+  25% {
+    transform: scale(0.6) rotate(180deg);
+  }
+  75% {
+    transform: scale(0.6) rotate(360deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
   }
 }

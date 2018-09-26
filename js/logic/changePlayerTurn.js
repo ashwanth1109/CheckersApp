@@ -13,8 +13,28 @@ const changePlayerTurn = () => {
   //------------------------------------------------------------------------------------
   if (currentPlayer === 1) {
     currentPlayer = 2;
+    //------------------------------------------------------------------------------------
+    // Remove previous animation classes
+    //------------------------------------------------------------------------------------
+    if ($gameBoard.hasClass(`rotate-board-2`)) {
+      $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
+    }
+    //------------------------------------------------------------------------------------
+    // Rotate the board - Add animation class
+    //------------------------------------------------------------------------------------
+    $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
   } else {
     currentPlayer = 1;
+    //------------------------------------------------------------------------------------
+    // Remove previous animation classes
+    //------------------------------------------------------------------------------------
+    if ($gameBoard.hasClass(`rotate-board-1`)) {
+      $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
+    }
+    //------------------------------------------------------------------------------------
+    // Rotate the board - Add animation class
+    //------------------------------------------------------------------------------------
+    $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
   }
 
   resetCheckerClass();
@@ -33,5 +53,7 @@ const changePlayerTurn = () => {
   //------------------------------------------------------------------------------------
   // logStateOfBoard();
 
-  checkForMovesAvailable();
+  setTimeout(() => {
+    checkForMovesAvailable();
+  }, 1500);
 };
