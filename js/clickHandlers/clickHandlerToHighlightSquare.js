@@ -43,6 +43,10 @@ const clickHandlerToHighlightSquare = (
     $nextSquare1.removeClass(`highlightSquare`).addClass(`dark`);
     $nextSquare1.off(`click`);
     //------------------------------------------------------------------------------------
+    // Check if next square is at the edge so as to convert checker to king
+    //------------------------------------------------------------------------------------
+    checkIfAtOpponentEdge($nextSquare1);
+    //------------------------------------------------------------------------------------
     // Check if next square 2 exists
     //------------------------------------------------------------------------------------
     if ($nextSquare2) {
