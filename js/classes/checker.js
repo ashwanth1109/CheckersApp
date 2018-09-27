@@ -1,5 +1,4 @@
 //-----Checker CLASS-----//
-
 class Checker {
   constructor(playerId) {
     this.playerId = playerId;

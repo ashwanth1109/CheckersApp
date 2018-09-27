@@ -75,4 +75,17 @@ A checker has the following properties -
 
 (1) playerId = set to 1 if checker belongs to player 1 (black) and 2 if it belongs to player 2 (red)
 
-(2)
+(2) isItKing - set to true if checker reaches the end of the board and becomes a king piece
+
+(3) diagonals array - which will store the 4 diagonal squares of each checker for that turn
+
+```javascript
+//-----Checker CLASS-----//
+class Checker {
+  constructor(playerId) {
+    this.playerId = playerId;
+    this.isItKing = false;
+    this.diagonals = [];
+  }
+}
+```
