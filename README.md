@@ -292,3 +292,41 @@ const addHighlightToChecker = $checker => {
   }
 };
 ```
+
+### 9. Adding a click handler to the highlighted checkers - clickHandlerToHighlightedChecker()
+
+On clicking a highlighted checker, we add selected class to indicate that a checker has been selected.
+Iterate through all diagonals that exist for checker (as these are all diagonals for which checker can move),
+
+If diagonal has a jump position, highlight jump square and make it clickable by adding clickHandlerToHighlightSquare().
+
+Else if diagonal has a move position, highlight move square and make it clickable by adding clickHandlerToHighlightSquare().
+
+```javascript
+const clickHandlerToHighlightedChecker = $checker => {
+  $checker.on(`click`, e => {
+    e.stopPropagation();
+    resetHighlightSquares();
+    addSelectedToChecker($checker);
+    for (const diagonal of $checker.data(`data`).diagonals) {
+      if (diagonal.jumpPosition) {
+        addHighlightToSquare(diagonal.jumpPosition);
+        clickHandlerToHighlightSquare(
+          $checker.parent(), // current square
+          diagonal.jumpPosition, // jump square
+          $checker, // checker
+          diagonal.opponentChecker // opponent piece to capture
+        );
+      } else if (diagonal.movePosition) {
+        addHighlightToSquare(diagonal.movePosition);
+        clickHandlerToHighlightSquare(
+          $checker.parent(), // current square
+          diagonal.movePosition, // move square
+          $checker, // checker
+          null
+        );
+      }
+    }
+  });
+};
+```
