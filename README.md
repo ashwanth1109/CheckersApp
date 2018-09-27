@@ -232,3 +232,48 @@ const checkForForwardDiagonals = $checker => {
   }
 };
 ```
+
+### 7. Check if we can make a move - checkForMoveSquare()
+
+We get diagonal and jump diagonal squares as params along with checker.
+We create a diagonal object. We store diagonal square and jumpDiagonal square if they are inside the board in $diagonal and $jumpDiagonal.
+
+If diagonal has a piece which is an opponent piece and jump diagonal has no piece, then we store the jump diagonal
+square and the opponent checker of the diagonal square inside the diagonal object which is stored inside the diagonals array of the current checker. Add highlight to checker since there is a move available.
+
+If diagonal has no piece, then we store the diagonal square inside the diagonal object as move square. Add highlight to checker since there is a move available.
+
+```javascript
+const checkForMoveSquare = (
+  diagonal, // move square value
+  jumpDiagonal, // jump square value
+  $checker
+) => {
+  let $diagonal = null,
+    $jumpDiagonal = null;
+  if (diagonal) {
+    $diagonal = $squares.eq(diagonal); // stores the move square div
+  }
+  if (jumpDiagonal) {
+    $jumpDiagonal = $squares.eq(jumpDiagonal); // stores the jump square div
+  }
+  const diagonalObject = new Diagonal();
+  if ($diagonal !== null) {
+    if ($diagonal.data(`data`).hasPiece) {
+      if ($jumpDiagonal !== null) {
+        if ($diagonal.children().data(`data`).playerId !== currentPlayer) {
+          if ($jumpDiagonal.data(`data`).hasPiece === false) {
+            diagonalObject.jumpPosition = $jumpDiagonal;
+            diagonalObject.opponentChecker = $diagonal.children(); // store the checker object
+            addHighlightToChecker($checker);
+          }
+        }
+      }
+    } else {
+      diagonalObject.movePosition = $diagonal;
+      addHighlightToChecker($checker);
+    }
+  }
+  $checker.data(`data`).diagonals.push(diagonalObject); // store the diagonal object in your checker
+};
+```
