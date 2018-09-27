@@ -413,3 +413,85 @@ const clickHandlerToHighlightSquare = (
   }
 };
 ```
+
+### 14. Check if checker is now at opponent's end of the board - checkIfAtOpponentEdge()
+
+If checker has reached the end of the board, then it can move in all 4 diagonals and not just forward as it is a king piece now. To indigate that it is a king piece we set checkers property isItKing as true and add an image div 'crown.png' to the checker.
+
+Can probably refactor this some more (when you have time)
+
+```javascript
+const checkIfAtOpponentEdge = $square => {
+  if (currentPlayer === 1) {
+    if ($square.data(`data`).row === 1) {
+      if (!$square.children().data(`data`).isItKing) {
+        $square
+          .children()
+          .append(
+            $(
+              `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
+            )
+          );
+        $square.children().data(`data`).isItKing = true;
+      }
+    }
+  } else if (currentPlayer === 2) {
+    if ($square.data(`data`).row === gameSize) {
+      if (!$square.children().data(`data`).isItKing) {
+        $square
+          .children()
+          .append(
+            $(
+              `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
+            )
+          );
+        $square.children().data(`data`).isItKing = true;
+      }
+    }
+  }
+};
+```
+
+### 15. Change Player Turn as turn is completed - changePlayerTurn()
+
+When the current player turn is complete, then we first check for win condition, i.e. has black or red captured all the opponents checkers. If yes, we invoke end game function, passing in the winner denoted by 1 or 2 as parameter.
+
+If game is not over, then we alternate the current player variable and rotate the board using a keyframe animation css class. Then we reset all checkers so that none of them have highlights or click events. We also reset the checker diagonals array for reuse.
+
+At the end of the animation, we then check for moves available for the next player turn.
+
+```javascript
+const changePlayerTurn = () => {
+  if (blackScore === 12) {
+    endGame(1);
+  } else if (redScore === 12) {
+    endGame(2);
+  }
+
+  if (currentPlayer === 1) {
+    currentPlayer = 2;
+    if ($gameBoard.hasClass(`rotate-board-2`)) {
+      $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
+    }
+    $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
+  } else {
+    currentPlayer = 1;
+    if ($gameBoard.hasClass(`rotate-board-1`)) {
+      $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
+    }
+    $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
+  }
+
+  resetCheckerClass();
+
+  for (const checker of $(`.player`)) {
+    const resetData = $(checker).data(`data`);
+    resetData.diagonals = [];
+    $(checker).data(`data`, resetData);
+  }
+
+  setTimeout(() => {
+    checkForMovesAvailable();
+  }, 1500);
+};
+```

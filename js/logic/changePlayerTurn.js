@@ -57,4 +57,5 @@ const changePlayerTurn = () => {
     checkForMovesAvailable();
   }, 1500);
   // checkForMovesAvailable();
+  startGame();
 };
