@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------------------
 // $("#accordion").accordion({
 //   icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
+// });
 $("#accordion").accordion();
 
 //-----Create variable that keeps track of whether instructions are shown or not-----//
@@ -44,7 +45,7 @@ $(`#new-game`).on(`click`, startNewGame); // ISSUES WITH THIS
 //------------------------------------------------------------------------------------
 // Store all squares in constant $squares
 //------------------------------------------------------------------------------------
-const $squares = $(`.square`);
+let $squares = $(`.square`);
 
 //------------------------------------------------------------------------------------
 // TERMINOLOGY: Piece or Checker | Square | JumpSquare | MoveSquare

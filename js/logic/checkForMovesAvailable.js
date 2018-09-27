@@ -2,6 +2,7 @@
 // Function
 //------------------------------------------------------------------------------------
 const checkForMovesAvailable = () => {
+  console.log(`checking for moves available`);
   //------------------------------------------------------------------------------------
   // Get all player pieces for current player (e.g. black for player 1 and red for player 2)
   //------------------------------------------------------------------------------------

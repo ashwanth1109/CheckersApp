@@ -2,9 +2,11 @@
 // Function checks to see if forward diagonals are available to make a move
 //------------------------------------------------------------------------------------
 const checkForForwardDiagonals = $checker => {
+  console.log(`checking for forward diagonals`);
   //------------------------------------------------------------------------------------
   // Get the checkers parent square data
   //------------------------------------------------------------------------------------
+  console.log($checker.parent().data(`data`));
   const squareData = $checker.parent().data(`data`);
 
   //------------------------------------------------------------------------------------
@@ -15,6 +17,7 @@ const checkForForwardDiagonals = $checker => {
     // then you want to check for topLeft which is a forward diagonal
     //------------------------------------------------------------------------------------
     const topLeftData = $squares.eq(squareData.topLeft).data(`data`);
+    console.log(topLeftData);
     //------------------------------------------------------------------------------------
     // Check if TOP LEFT is inside the board and check if move / jump square is available.
     // If so, highlight checker
