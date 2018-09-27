@@ -1,12 +1,8 @@
 //------------------------------------------------------------------------------------
-// Function
+// Function that iterates through the array of checkers and checks for all diagonals
+// if checker is king, otherwise it checks for forward diagonals
 //------------------------------------------------------------------------------------
-const checkForMovesAvailable = () => {
-  console.log(`checking for moves available`);
-  //------------------------------------------------------------------------------------
-  // Get all player pieces for current player (e.g. black for player 1 and red for player 2)
-  //------------------------------------------------------------------------------------
-  const $checkers = getPlayerPieces();
+const checkForMovesAvailable = $checkers => {
   //------------------------------------------------------------------------------------
   // Iterate through the array of player pieces
   //------------------------------------------------------------------------------------

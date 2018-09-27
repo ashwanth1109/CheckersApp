@@ -3,12 +3,22 @@ const getPlayerPieces = () => {
   // Get all player pieces
   //------------------------------------------------------------------------------------
   const $checkers = $(`.player`);
+  //------------------------------------------------------------------------------------
+  // If current player is 1
+  //------------------------------------------------------------------------------------
   if (currentPlayer === 1) {
-    const $playerPieces = $checkers.filter($(`.black`));
-    return $playerPieces;
-  } else if (currentPlayer === 2) {
-    const $playerPieces = $checkers.filter($(`.red`));
-    return $playerPieces;
+    //------------------------------------------------------------------------------------
+    // Filter out the black checkers from the array and return it
+    //------------------------------------------------------------------------------------
+    return $checkers.filter($(`.black`));
   }
-  // console.log($playerPieces);
+  //------------------------------------------------------------------------------------
+  // Else if current player is 2
+  //------------------------------------------------------------------------------------
+  else if (currentPlayer === 2) {
+    //------------------------------------------------------------------------------------
+    // Filter out the red checkers from the array and return it
+    //------------------------------------------------------------------------------------
+    return $checkers.filter($(`.red`));
+  }
 };

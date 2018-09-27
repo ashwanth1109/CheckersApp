@@ -1,24 +1,16 @@
-const startNewGame = () => {
-  console.log(`starting new game`);
-  if ($(`#game-over-container`).css(`display`) === `flex`) {
-    $(`#game-over-container`).css(`display`, `none`);
-  }
+const startGame = () => {
+  //------------------------------------------------------------------------------------
+  // Store all squares in $squares
+  //------------------------------------------------------------------------------------
+  $squares = $(`.square`);
 
-  $gameBoard.children().remove();
-  createBoard();
   //------------------------------------------------------------------------------------
-  // Change current player back to black or 1
+  // Get all player pieces for current player (e.g. black for player 1 and red for player 2)
   //------------------------------------------------------------------------------------
-  currentPlayer = 1;
+  const $checkers = getPlayerPieces();
+
   //------------------------------------------------------------------------------------
-  // Reset scores
+  // Check for moves available for current player
   //------------------------------------------------------------------------------------
-  blackScore = 0;
-  $(`#black-score`).text(blackScore);
-  redScore = 0;
-  $(`#red-score`).text(redScore);
-  //------------------------------------------------------------------------------------
-  // Start Game
-  //------------------------------------------------------------------------------------
-  startGame();
+  checkForMovesAvailable($checkers);
 };

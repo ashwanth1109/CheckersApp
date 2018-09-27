@@ -120,26 +120,28 @@ Alternating squares are provided classes 'light' and 'dark' to create the checke
 We then add all the checkers in their starting positions by invoking addCheckers()
 
 ```javascript
-for (let i = 1; i <= gameSize; i++) {
-  const $row = $(`<div class="row">`).appendTo($gameBoard);
+const createBoard = () => {
+  for (let i = 1; i <= gameSize; i++) {
+    const $row = $(`<div class="row">`).appendTo($gameBoard);
 
-  for (let j = 1; j <= gameSize; j++) {
-    const $square = $(`<div class="square">`).appendTo($row);
-    const data = new Square(i, j);
-    $square.data(`data`, data);
+    for (let j = 1; j <= gameSize; j++) {
+      const $square = $(`<div class="square">`).appendTo($row);
+      const data = new Square(i, j);
+      $square.data(`data`, data);
 
-    if (!((i + j) % 2)) {
-      $square.addClass(`dark`);
-      if (i < 4) {
-        addCheckers($square, 2);
-      } else if (i > 5) {
-        addCheckers($square, 1);
+      if (!((i + j) % 2)) {
+        $square.addClass(`dark`);
+        if (i < 4) {
+          addCheckers($square, 2);
+        } else if (i > 5) {
+          addCheckers($square, 1);
+        }
+      } else {
+        $square.addClass(`light`);
       }
-    } else {
-      $square.addClass(`light`);
     }
   }
-}
+};
 ```
 
 ### 3. Adding checkers to the Board - addCheckers()
@@ -150,15 +152,51 @@ Let the square know that it has a piece now.
 if playerId for checker is 1, then we add class black and if its 2, then we add class red.
 
 ```javascript
-const $checker = $(`<div class="player">`).appendTo($square);
-const data = new Checker(playerId);
-$checker.data(`data`, data);
-$square.data(`data`).hasPiece = true;
-if (playerId === 1) {
-  $checker.addClass(`black`);
-} else if (playerId === 2) {
-  $checker.addClass(`red`);
-}
+const addCheckers = ($square, playerId) => {
+  const $checker = $(`<div class="player">`).appendTo($square);
+  const data = new Checker(playerId);
+  $checker.data(`data`, data);
+
+  $square.data(`data`).hasPiece = true;
+
+  if (playerId === 1) {
+    $checker.addClass(`black`);
+  } else if (playerId === 2) {
+    $checker.addClass(`red`);
+  }
+};
 ```
 
-### 4. Checking for moves available for current player
+### 4. Get all checkers for current player - getPlayerPieces()
+
+First we get all checkers for current player - 1 or 2
+
+```javascript
+const getPlayerPieces = () => {
+  const $checkers = $(`.player`);
+
+  if (currentPlayer === 1) {
+    return $checkers.filter($(`.black`));
+  } else if (currentPlayer === 2) {
+    return $checkers.filter($(`.red`));
+  }
+};
+```
+
+### 5. Checking for moves available for current player - checkForMovesAvailable()
+
+Then we check for all the moves that are available for the checkers of current player
+To do this we iterate through all the current player checkers and check if its king or not
+If king, then check for all diagonals else check for forward diagonals
+
+```javascript
+const checkForMovesAvailable = $checkers => {
+  for (const checker of $checkers) {
+    if ($(checker).data(`data`).isItKing) {
+      checkForAllDiagonals($(checker));
+    } else {
+      checkForForwardDiagonals($(checker));
+    }
+  }
+};
+```
