@@ -77,7 +77,7 @@ A checker has the following properties -
 
 (2) isItKing - set to true if checker reaches the end of the board and becomes a king piece
 
-(3) diagonals array - which will store the 4 diagonal squares of each checker for that turn
+(3) diagonals array - which will store the 4 diagonal objects (TL, TR, BL, BR) of each checker for that turn
 
 ```javascript
 //-----Checker CLASS-----//
@@ -86,6 +86,28 @@ class Checker {
     this.playerId = playerId;
     this.isItKing = false;
     this.diagonals = [];
+  }
+}
+```
+
+#### Diagonal
+
+Each diagonal object will have the following properties -
+
+(1) movePosition - One square away in that diagonal direction (e.g. Top Left square)
+
+(2) jumpPosition - Two squares away in the same diagonal direction (e.g. Square to the Top Left of the Top Left Square)
+
+(3) opponentChecker - stores the checker object if there is one on the movePosition square
+
+```javascript
+// Diagonal Class
+
+class Diagonal {
+  constructor() {
+    this.movePosition = null;
+    this.jumpPosition = null;
+    this.opponentChecker = null;
   }
 }
 ```
