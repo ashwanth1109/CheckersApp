@@ -1,4 +1,4 @@
-# CheckersApp
+# Checkers App (1-week long project)
 
 2 Player Checker Game
 
@@ -111,3 +111,34 @@ class Diagonal {
   }
 }
 ```
+
+### 2. Creating the Board - createBoard()
+
+We use nested for loops to iterate from 1 to 8 (or gameSize) and create 64 squares.
+Each square also has a data attribute which stores the square object created from the square class
+Alternating squares are provided classes 'light' and 'dark' to create the checker pattern
+
+```javascript
+for (let i = 1; i <= gameSize; i++) {
+  const $row = $(`<div class="row">`).appendTo($gameBoard);
+
+  for (let j = 1; j <= gameSize; j++) {
+    const $square = $(`<div class="square">`).appendTo($row);
+    const data = new Square(i, j);
+    $square.data(`data`, data);
+
+    if (!((i + j) % 2)) {
+      $square.addClass(`dark`);
+      if (i < 4) {
+        addCheckers($square, 2);
+      } else if (i > 5) {
+        addCheckers($square, 1);
+      }
+    } else {
+      $square.addClass(`light`);
+    }
+  }
+}
+```
+
+### 3. Adding checkers to the Board - addCheckers()
