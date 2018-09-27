@@ -278,7 +278,7 @@ const checkForMoveSquare = (
 };
 ```
 
-### 8. Add highlight class to all checkers that can make a move - addHighlightToChecker()
+### 8. Add highlightChecker class to all checkers that can make a move - addHighlightToChecker()
 
 Check if checker already has the class highlight checker. If not then, add the class highlight Checker.
 
@@ -330,3 +330,40 @@ const clickHandlerToHighlightedChecker = $checker => {
   });
 };
 ```
+
+### 10. Reset Highlight Squares by adding dark class back and removing on click - resetHighlightSquares()
+
+```javascript
+const resetHighlightSquares = () => {
+  $(`.highlightSquare`)
+    .removeClass(`highlightSquare`)
+    .addClass(`dark`);
+  $(`.dark`).off(`click`);
+};
+```
+
+### 11. Add selected to checker that was clicked - addSelectedToChecker()
+
+```javascript
+const addSelectedToChecker = $checker => {
+  const $selected = $(`.selectChecker`);
+  if ($selected) {
+    for (const checker of $selected) {
+      removeSelectedFromChecker($(checker));
+    }
+  }
+  $checker.removeClass(`highlightChecker`).addClass(`selectChecker`);
+};
+```
+
+### 12. Add highlightSquare class to all squares that the checker can move to - addHighlightToSquare()
+
+```javascript
+const addHighlightToSquare = $square => {
+  if ($square) {
+    $square.removeClass(`dark`).addClass(`highlightSquare`);
+  }
+};
+```
+
+### 13.
