@@ -185,8 +185,9 @@ const getPlayerPieces = () => {
 
 ### 5. Checking for moves available for current player - checkForMovesAvailable()
 
-Then we check for all the moves that are available for the checkers of current player
-To do this we iterate through all the current player checkers and check if its king or not
+Then we check for all the moves that are available for the checkers of current player.
+To do this we iterate through all the current player checkers and check if its king or not.
+
 If king, then check for all diagonals else check for forward diagonals
 
 ```javascript
@@ -197,6 +198,37 @@ const checkForMovesAvailable = $checkers => {
     } else {
       checkForForwardDiagonals($(checker));
     }
+  }
+};
+```
+
+### 6. Checking for forward diagonals - checkForForwardDiagonals()
+
+We first get checkers parent square data, and then we check if we can make a move by invoking the
+checkForMoveSquare().
+
+If player 1, then top left and top right are its forward diagonals.
+For player 2, then bot left and bot right are its forward diagonals
+
+```javascript
+const checkForForwardDiagonals = $checker => {
+  const squareData = $checker.parent().data(`data`);
+
+  if (currentPlayer === 1) {
+    const topLeftData = $squares.eq(squareData.topLeft).data(`data`);
+    checkForMoveSquare(
+      // checking for top left diagonal
+      squareData.topLeft, // move square value
+      topLeftData.topLeft, // jump square value
+      $checker // checker div
+    );
+    const topRightData = $squares.eq(squareData.topRight).data(`data`);
+    checkForMoveSquare(squareData.topRight, topRightData.topRight, $checker);
+  } else if (currentPlayer === 2) {
+    const botLeftData = $squares.eq(squareData.botLeft).data(`data`);
+    checkForMoveSquare(squareData.botLeft, botLeftData.botLeft, $checker);
+    const botRightData = $squares.eq(squareData.botRight).data(`data`);
+    checkForMoveSquare(squareData.botRight, botRightData.botRight, $checker);
   }
 };
 ```
