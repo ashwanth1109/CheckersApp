@@ -233,7 +233,38 @@ const checkForForwardDiagonals = $checker => {
 };
 ```
 
-### 7. Check if we can make a move - checkForMoveSquare()
+### 7. Check for all diagonals for move options - checkForAllDiagonals()
+
+We first get checkers parent square data, and then we check if we can make a move by invoking
+checkForMoveSquare on all 4 diagonals - top left, top right, bot left and bot right.
+
+```javascript
+const checkForAllDiagonals = $checker => {
+  const squareData = $checker.parent().data(`data`);
+  checkForMoveSquare(
+    squareData.topLeft,
+    $squares.eq(squareData.topLeft).data(`data`).topLeft,
+    $checker
+  );
+  checkForMoveSquare(
+    squareData.topRight,
+    $squares.eq(squareData.topRight).data(`data`).topRight,
+    $checker
+  );
+  checkForMoveSquare(
+    squareData.botLeft,
+    $squares.eq(squareData.botLeft).data(`data`).botLeft,
+    $checker
+  );
+  checkForMoveSquare(
+    squareData.botRight,
+    $squares.eq(squareData.botRight).data(`data`).botRight,
+    $checker
+  );
+};
+```
+
+### 8. Check if we can make a move - checkForMoveSquare()
 
 We get diagonal and jump diagonal squares as params along with checker.
 We create a diagonal object. We store diagonal square and jumpDiagonal square if they are inside the board in $diagonal and $jumpDiagonal.
@@ -278,7 +309,7 @@ const checkForMoveSquare = (
 };
 ```
 
-### 8. Add highlightChecker class to all checkers that can make a move - addHighlightToChecker()
+### 9. Add highlightChecker class to all checkers that can make a move - addHighlightToChecker()
 
 Check if checker already has the class highlight checker. If not then, add the class highlight Checker.
 
@@ -293,7 +324,7 @@ const addHighlightToChecker = $checker => {
 };
 ```
 
-### 9. Adding a click handler to the highlighted checkers - clickHandlerToHighlightedChecker()
+### 10. Adding a click handler to the highlighted checkers - clickHandlerToHighlightedChecker()
 
 On clicking a highlighted checker, we add selected class to indicate that a checker has been selected.
 Iterate through all diagonals that exist for checker (as these are all diagonals for which checker can move),
@@ -331,7 +362,7 @@ const clickHandlerToHighlightedChecker = $checker => {
 };
 ```
 
-### 10. Reset Highlight Squares by adding dark class back and removing on click - resetHighlightSquares()
+### 11. Reset Highlight Squares by adding dark class back and removing on click - resetHighlightSquares()
 
 ```javascript
 const resetHighlightSquares = () => {
@@ -342,7 +373,7 @@ const resetHighlightSquares = () => {
 };
 ```
 
-### 11. Add selected to checker that was clicked - addSelectedToChecker()
+### 12. Add selected to checker that was clicked - addSelectedToChecker()
 
 ```javascript
 const addSelectedToChecker = $checker => {
@@ -356,7 +387,7 @@ const addSelectedToChecker = $checker => {
 };
 ```
 
-### 12. Add highlightSquare class to all squares that the checker can move to - addHighlightToSquare()
+### 13. Add highlightSquare class to all squares that the checker can move to - addHighlightToSquare()
 
 ```javascript
 const addHighlightToSquare = $square => {
@@ -366,7 +397,7 @@ const addHighlightToSquare = $square => {
 };
 ```
 
-### 13. Add a click handler to highlighted square
+### 14. Add a click handler to highlighted square
 
 Click Handler on Highlighted Square takes in current square, next square to move to that will be clicked by user, checker on current square and opponent checker on move square, if next square is jump square.
 
@@ -414,7 +445,7 @@ const clickHandlerToHighlightSquare = (
 };
 ```
 
-### 14. Check if checker is now at opponent's end of the board - checkIfAtOpponentEdge()
+### 15. Check if checker is now at opponent's end of the board - checkIfAtOpponentEdge()
 
 If checker has reached the end of the board, then it can move in all 4 diagonals and not just forward as it is a king piece now. To indigate that it is a king piece we set checkers property isItKing as true and add an image div 'crown.png' to the checker.
 
@@ -452,7 +483,7 @@ const checkIfAtOpponentEdge = $square => {
 };
 ```
 
-### 15. Change Player Turn as turn is completed - changePlayerTurn()
+### 16. Change Player Turn as turn is completed - changePlayerTurn()
 
 When the current player turn is complete, then we first check for win condition, i.e. has black or red captured all the opponents checkers. If yes, we invoke end game function, passing in the winner denoted by 1 or 2 as parameter.
 
