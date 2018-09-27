@@ -6,7 +6,7 @@ const checkForMoveSquare = (
   jumpDiagonal, // jump square value
   $checker
 ) => {
-  console.log(`checking for move square`);
+  // console.log(`checking for move square`);
   const diagonal1 = new Diagonal();
   if (diagonal) {
     diagonal1.movePosition = $squares.eq(diagonal); // stores the move square div
