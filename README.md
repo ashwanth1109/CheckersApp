@@ -366,4 +366,50 @@ const addHighlightToSquare = $square => {
 };
 ```
 
-### 13.
+### 13. Add a click handler to highlighted square
+
+Click Handler on Highlighted Square takes in current square, next square to move to that will be clicked by user, checker on current square and opponent checker on move square, if next square is jump square.
+
+On clicking the next square, the user has chosen to make their move. We reset highlighting on all squares.
+Then we set current square's hasPiece to false and append checker to next square.
+If opponent checker exists, then we remove it off the board and set its square's hasPiece to false.
+
+If current player is black, we update black score as a checker was just captured. Similarly for red score.
+Next, we check if checker is on opponent edge, so that we can convert checker to king piece. [checkIfAtOpponentEdge]
+Then we set next square's hasPiece to true and reset the diagonals array stored inside checker so that we can reuse the object during the next move.
+
+```javascript
+const clickHandlerToHighlightSquare = (
+  $currentSquare,
+  $nextSquare,
+  $checker,
+  $opponentChecker
+) => {
+  if ($nextSquare) {
+    $nextSquare.on(`click`, () => {
+      resetHighlightSquares();
+      $currentSquare.data(`data`).hasPiece = false;
+      $checker.appendTo($nextSquare);
+      if ($opponentChecker) {
+        $opponentChecker.parent().data(`data`).hasPiece = false;
+        $opponentChecker.remove();
+        if (currentPlayer === 1) {
+          blackScore++;
+          $(`#black-score`).text(blackScore);
+        } else {
+          redScore++;
+          $(`#red-score`).text(redScore);
+        }
+      }
+      checkIfAtOpponentEdge($nextSquare);
+      $nextSquare.data(`data`).hasPiece = true;
+      $nextSquare.off(`click`);
+      $(`.highlightSquare`)
+        .removeClass(`highlightSquare`)
+        .addClass(`dark`);
+      $checker.data(`data`).diagonals = [];
+      changePlayerTurn();
+    });
+  }
+};
+```

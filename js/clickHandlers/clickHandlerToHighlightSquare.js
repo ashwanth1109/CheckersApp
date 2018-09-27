@@ -46,29 +46,12 @@ const clickHandlerToHighlightSquare = (
       $(`.highlightSquare`)
         .removeClass(`highlightSquare`)
         .addClass(`dark`);
-
-      // //------------------------------------------------------------------------------------
-      // // Set next square 1's hasPiece to true. Remove highlightSquare class from next square 1
-      // //------------------------------------------------------------------------------------
-      // $nextSquare1.data(`data`).hasPiece = true;
-      // $nextSquare1.removeClass(`highlightSquare`).addClass(`dark`);
-      // $nextSquare1.off(`click`);
-      // //------------------------------------------------------------------------------------
-      // // Check if next square 2 exists
-      // //------------------------------------------------------------------------------------
-      // if ($nextSquare2) {
-      //   //------------------------------------------------------------------------------------
-      //   // Remove highlightSquare class from next square 2 since move has been made.
-      //   //------------------------------------------------------------------------------------
-      //   $nextSquare2.removeClass(`highlightSquare`).addClass(`dark`);
-      //   $nextSquare2.off(`click`);
-      // }
       //------------------------------------------------------------------------------------
-      // Reset all jump positions and move positions for reuse
+      // Reset all diagonals for reuse on next checker click
       //------------------------------------------------------------------------------------
       $checker.data(`data`).diagonals = [];
       //------------------------------------------------------------------------------------
-      // Check if checker can jump one more time: Handle this case here bruh!
+      // Check if checker can jump one more time: Handle this case here bro! FUTURE ENHANCEMENT
       //------------------------------------------------------------------------------------
       changePlayerTurn();
     });
