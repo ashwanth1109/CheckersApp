@@ -1,17 +1,28 @@
 //------------------------------------------------------------------------------------
 // Checks if diagonal square is inside the board and checks if its a move square
 //------------------------------------------------------------------------------------
-const checkForMoveSquare = (diagonal, jumpDiagonal, $checker) => {
+const checkForMoveSquare = (
+  diagonal, // move square value
+  jumpDiagonal, // jump square value
+  $checker
+) => {
+  const diagonal1 = new Diagonal();
+  if (diagonal) {
+    diagonal1.movePosition = $squares.eq(diagonal); // stores the move square div
+  }
+  if (jumpDiagonal) {
+    diagonal1.jumpPosition = $squares.eq(jumpDiagonal); // stores the jump square div
+  }
   //------------------------------------------------------------------------------------
-  // Check if diagonal is inside the board
+  // Check if diagonal value is not null, then move square is inside the board
   //------------------------------------------------------------------------------------
   if (diagonal !== null) {
     //------------------------------------------------------------------------------------
     // Check if move square has a piece
     //------------------------------------------------------------------------------------
-    if ($squares.eq(diagonal).data(`data`).hasPiece) {
+    if (diagonal1.movePosition.data(`data`).hasPiece) {
       //------------------------------------------------------------------------------------
-      // Check if jumpDiagonal is inside the board
+      // Check if jumpDiagonal value is not null, then jump square is inside the board
       //------------------------------------------------------------------------------------
       if (jumpDiagonal !== null) {
         //------------------------------------------------------------------------------------
@@ -19,24 +30,32 @@ const checkForMoveSquare = (diagonal, jumpDiagonal, $checker) => {
         // Also stores jump square and the piece that can be captured in checkers data object
         //------------------------------------------------------------------------------------
         if (
-          checkIfOpponentPiece(
-            $checker, // Checker
-            $checker.parent(), // Current Square
-            $squares.eq(diagonal), // Move Square
-            $squares.eq(jumpDiagonal) // Jump Square
-          )
+          diagonal1.movePosition.children().data(`data`).playerId !==
+          currentPlayer
         ) {
-          //------------------------------------------------------------------------------------
-          // Add highlight to checker as the piece has a position it can move to
-          //------------------------------------------------------------------------------------
-          addHighlightToChecker($checker);
+          if (diagonal1.jumpPosition.data(`data`).hasPiece === false) {
+            diagonal1.opponentChecker = diagonal1.movePosition.children(); // store the checker object
+            //------------------------------------------------------------------------------------
+            // Add highlight to checker as the piece has a position it can move to
+            //------------------------------------------------------------------------------------
+            addHighlightToChecker($checker);
+          } else {
+            diagonal1.jumpPosition = null;
+            diagonal1.movePosition = null;
+          }
+        } else {
+          diagonal1.jumpPosition = null;
+          diagonal1.movePosition = null;
         }
+      } else {
+        diagonal1.movePosition = null;
       }
     }
     //------------------------------------------------------------------------------------
     // If move square has no piece $checker can move here. So highlight it
     //------------------------------------------------------------------------------------
     else {
+      diagonal1.jumpPosition = null;
       //------------------------------------------------------------------------------------
       // If move square is available, then highlight checker piece if not already highlighted
       //------------------------------------------------------------------------------------
@@ -44,10 +63,10 @@ const checkForMoveSquare = (diagonal, jumpDiagonal, $checker) => {
       //------------------------------------------------------------------------------------
       // Check if this check is for the diagonal left (1) or right (2) and store move position accordingly
       //------------------------------------------------------------------------------------
-      //------------------------------------------------------------------------------------
-      // Store move square element in checkers move position array (part of the data object)
-      //------------------------------------------------------------------------------------
-      $checker.data(`data`).movePositions.push($squares.eq(diagonal));
     }
+  } else {
+    diagonal1.movePosition = null;
+    diagonal1.jumpPosition = null;
   }
+  $checker.data(`data`).diagonals.push(diagonal1); // store the diagonal object in your checker
 };

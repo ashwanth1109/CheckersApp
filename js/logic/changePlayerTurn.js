@@ -16,46 +16,45 @@ const changePlayerTurn = () => {
     //------------------------------------------------------------------------------------
     // Remove previous animation classes
     //------------------------------------------------------------------------------------
-    if ($gameBoard.hasClass(`rotate-board-2`)) {
-      $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
-    }
-    //------------------------------------------------------------------------------------
-    // Rotate the board - Add animation class
-    //------------------------------------------------------------------------------------
-    $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
+    // if ($gameBoard.hasClass(`rotate-board-2`)) {
+    //   $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
+    // }
+    // //------------------------------------------------------------------------------------
+    // // Rotate the board - Add animation class
+    // //------------------------------------------------------------------------------------
+    // $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
   } else {
     currentPlayer = 1;
     //------------------------------------------------------------------------------------
     // Remove previous animation classes
     //------------------------------------------------------------------------------------
-    if ($gameBoard.hasClass(`rotate-board-1`)) {
-      $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
-    }
-    //------------------------------------------------------------------------------------
-    // Rotate the board - Add animation class
-    //------------------------------------------------------------------------------------
-    $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
+    // if ($gameBoard.hasClass(`rotate-board-1`)) {
+    //   $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
+    // }
+    // //------------------------------------------------------------------------------------
+    // // Rotate the board - Add animation class
+    // //------------------------------------------------------------------------------------
+    // $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
   }
 
   resetCheckerClass();
 
   for (const checker of $(`.player`)) {
     const resetData = $(checker).data(`data`);
-    resetData.jumpPositions = [];
-    resetData.movePositions = [];
+    resetData.diagonals = [];
     $(checker).data(`data`, resetData);
   }
 
   //------------------------------------------------------------------------------------
   // IF YOU WANT TO LOG THE STATE OF THE BOARD, THEN UNCOMMENT THE LINE BELOW
   //------------------------------------------------------------------------------------
-  // logStateOfBoard();
-  // console.log(
-  //   `***********************************************************************`
-  // );
+  logStateOfBoard();
+  console.log(
+    `***********************************************************************`
+  );
 
-  setTimeout(() => {
-    checkForMovesAvailable();
-  }, 1500);
-  // checkForMovesAvailable();
+  // setTimeout(() => {
+  //   checkForMovesAvailable();
+  // }, 1500);
+  checkForMovesAvailable();
 };

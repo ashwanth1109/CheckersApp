@@ -14,6 +14,8 @@ const checkIfOpponentPiece = ($checker, $square, $moveSquare, $jumpSquare) => {
       //------------------------------------------------------------------------------------
       // Store the opponent checker as a piece that cen be captured
       //------------------------------------------------------------------------------------
+      console.log($checker.data(`data`));
+      debugger;
       $checker
         .data(`data`)
         .checkersThatCanBeCaptured.push($moveSquare.children());

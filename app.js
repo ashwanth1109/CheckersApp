@@ -24,10 +24,10 @@ createBoard();
 // //------------------------------------------------------------------------------------
 // // Show Instructions on Document Load
 // //------------------------------------------------------------------------------------
-showInstructions();
+// showInstructions();
 
 //------------------------------------------------------------------------------------
-// Add on click event handler to button #instructiions-button
+// Add on click event handler to button #instructions-button
 //------------------------------------------------------------------------------------
 $(`#instructions-button`).on(`click`, showInstructions);
 

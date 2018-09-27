@@ -19,7 +19,12 @@ const checkForForwardDiagonals = $checker => {
     // Check if TOP LEFT is inside the board and check if move / jump square is available.
     // If so, highlight checker
     //------------------------------------------------------------------------------------
-    checkForMoveSquare(squareData.topLeft, topLeftData.topLeft, $checker);
+    checkForMoveSquare(
+      // checking for top left diagonal
+      squareData.topLeft, // move square value
+      topLeftData.topLeft, // jump square value
+      $checker // checker div
+    );
     //------------------------------------------------------------------------------------
     // then you want to check for topRight which is a forward diagonal
     //------------------------------------------------------------------------------------
