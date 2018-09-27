@@ -51,4 +51,4 @@ let $squares;
 // TERMINOLOGY: Piece or Checker | Square | JumpSquare | MoveSquare
 //------------------------------------------------------------------------------------
 
-startGame();
+startTurn();

@@ -8,7 +8,7 @@ const createBoard = () => {
     for (let j = 1; j <= gameSize; j++) {
       //-----SQUARES HAVE CLASS OF SQUARE: APPEND TO ROW-----//
       const $square = $(`<div class="square">`).appendTo($row);
-      const $border = $(`<div class="horizontal-border">`).appendTo($row);
+      $(`<div class="horizontal-border">`).appendTo($row);
       //-----data STORES SQUARE OBJECT CREATED FROM SQUARE CLASS-----//
       const data = new Square(i, j);
       $square.data(`data`, data);
@@ -32,6 +32,6 @@ const createBoard = () => {
         $square.addClass(`light`);
       }
     }
-    const $border = $(`<div class="vertical-border">`).appendTo($gameBoard);
+    $(`<div class="vertical-border">`).appendTo($gameBoard);
   }
 };

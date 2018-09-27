@@ -10,6 +10,9 @@
 </head>
 
 <body>
+  <audio>
+    <source src="./media/westworld.mp3" type="audio/mpeg">
+  </audio>
   <div id="background-image">
     <div id="game-info">
       <div id="score-info">
@@ -94,8 +97,26 @@
       <div id="game-container">
         <div id="ghost-container"></div>
       </div>
+      <div id="game-options">
+        <h2>GAME OPTIONS</h2>
+        <div>
+          <div class="button button-selected">8 by 8 checkerboard</div>
+          <div class="button">12 by 12 checkerboard</div>
+        </div>
+        <div>
+          <div class="enabled">
+            <div class="audio-image1"></div>
+            <div class="option-title">AUDIO</div>
+          </div>
+          <div class="enabled">
+            <div class="rotate-image1"></div>
+            <div class="option-title">ROTATE</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="absolute-center">
     <div id="game-over-container">
       <div id="game-over">
@@ -117,7 +138,7 @@
   <script src="./js/classes/checker.js"></script>
   <script src="./js/classes/diagonal.js"></script>
   <!-- CREATE A GAME BOARD AND ADD CHECKERS AND START GAME-->
-  <script src="./js/logic/startGame.js"></script>
+  <script src="./js/logic/startTurn.js"></script>
   <script src="./js/interface/createBoard.js"></script>
   <script src="./js/interface/addCheckers.js"></script>
   <!-- ANIMATE INSTRUCTIONS INTO AND OUT OF VIEW -->
@@ -149,8 +170,6 @@
   <script src="./js/interface/addHighlightToSquare.js"></script>
   <!-- ADD CLASS HIGHLIGHT TO CHECKER -->
   <script src="./js/interface/addHighlightToChecker.js"></script>
-  <!-- CHECK FOR OPPONENT PIECES -->
-  <script src="./js/logic/checkIfOpponentPiece.js"></script>
   <!-- CHECK FOR MOVE SQUARES -->
   <script src="./js/logic/checkForMoveSquare.js"></script>
   <!-- CHECK FOR ALL DIAGONALS -->

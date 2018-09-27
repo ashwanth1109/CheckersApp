@@ -48,14 +48,12 @@ const changePlayerTurn = () => {
   //------------------------------------------------------------------------------------
   // IF YOU WANT TO LOG THE STATE OF THE BOARD, THEN UNCOMMENT THE LINE BELOW
   //------------------------------------------------------------------------------------
-  logStateOfBoard();
-  console.log(
-    `***********************************************************************`
-  );
+  // logStateOfBoard();
+  // console.log(
+  //   `***********************************************************************`
+  // );
 
   setTimeout(() => {
-    checkForMovesAvailable();
+    startTurn();
   }, 1500);
-  // checkForMovesAvailable();
-  startGame();
 };
