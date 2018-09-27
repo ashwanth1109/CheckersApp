@@ -114,9 +114,10 @@ class Diagonal {
 
 ### 2. Creating the Board - createBoard()
 
-We use nested for loops to iterate from 1 to 8 (or gameSize) and create 64 squares.
-Each square also has a data attribute which stores the square object created from the square class
-Alternating squares are provided classes 'light' and 'dark' to create the checker pattern
+We use nested for loops to iterate from 1 to 8 (or gameSize) and create 64 squares which we append to the game board.
+Each square also has a data attribute which stores the square object created from the square class.
+Alternating squares are provided classes 'light' and 'dark' to create the checker pattern.
+We then add all the checkers in their starting positions by invoking addCheckers()
 
 ```javascript
 for (let i = 1; i <= gameSize; i++) {
@@ -142,3 +143,22 @@ for (let i = 1; i <= gameSize; i++) {
 ```
 
 ### 3. Adding checkers to the Board - addCheckers()
+
+We create a checker div of class player and add it to squares.
+Each checker also stores a data attribute for checker objects from checker class.
+Let the square know that it has a piece now.
+if playerId for checker is 1, then we add class black and if its 2, then we add class red.
+
+```javascript
+const $checker = $(`<div class="player">`).appendTo($square);
+const data = new Checker(playerId);
+$checker.data(`data`, data);
+$square.data(`data`).hasPiece = true;
+if (playerId === 1) {
+  $checker.addClass(`black`);
+} else if (playerId === 2) {
+  $checker.addClass(`red`);
+}
+```
+
+### 4. Checking for moves available for current player

@@ -1,14 +1,33 @@
+//------------------------------------------------------------------------------------
+// Function to add black or red checkers to the board by appending them to squares
+// $square and playerId are passed in as params
+//------------------------------------------------------------------------------------
 const addCheckers = ($square, playerId) => {
+  //------------------------------------------------------------------------------------
+  // Create a checker div of class player and append to $square
+  //------------------------------------------------------------------------------------
   const $checker = $(`<div class="player">`).appendTo($square);
-
+  //------------------------------------------------------------------------------------
+  // Create checker object add it as data to the checker div
+  //------------------------------------------------------------------------------------
+  const data = new Checker(playerId);
+  $checker.data(`data`, data);
+  //------------------------------------------------------------------------------------
+  // Set square's hasPiece property to true
+  //------------------------------------------------------------------------------------
   $square.data(`data`).hasPiece = true;
+  //------------------------------------------------------------------------------------
+  // Check if its player 1 or 2
+  //------------------------------------------------------------------------------------
   if (playerId === 1) {
-    const data = new Checker(playerId);
-    $checker.data(`data`, data);
+    //------------------------------------------------------------------------------------
+    // Add black class to checker if player 1
+    //------------------------------------------------------------------------------------
     $checker.addClass(`black`);
   } else if (playerId === 2) {
-    const data = new Checker(playerId);
-    $checker.data(`data`, data);
+    //------------------------------------------------------------------------------------
+    // Add red class to checker if player 2
+    //------------------------------------------------------------------------------------
     $checker.addClass(`red`);
   } else {
     console.log(`ERROR: Player ID needs to be either 1 or 2`);
