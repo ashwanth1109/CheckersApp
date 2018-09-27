@@ -277,3 +277,18 @@ const checkForMoveSquare = (
   $checker.data(`data`).diagonals.push(diagonalObject); // store the diagonal object in your checker
 };
 ```
+
+### 8. Add highlight class to all checkers that can make a move - addHighlightToChecker()
+
+Check if checker already has the class highlight checker. If not then, add the class highlight Checker.
+
+Also add a click handler to the checker that was highlighted.
+
+```javascript
+const addHighlightToChecker = $checker => {
+  if (!$checker.hasClass(`highlightChecker`)) {
+    $checker.addClass(`highlightChecker`);
+    clickHandlerToHighlightedChecker($checker);
+  }
+};
+```
