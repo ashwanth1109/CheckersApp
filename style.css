@@ -183,7 +183,8 @@
   Outer container of the accordion
 */
 .ui-accordion {
-  /* display: flex; */
+  width: 100%;
+  height: auto;
 }
 /*
   Header of the accordion
@@ -192,7 +193,7 @@
   background-color: #174259;
   color: #fffcf9;
   font-size: 1.5vw;
-  padding: 20px 10px;
+  padding: 20px 50px;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -206,10 +207,13 @@
   /* display: flex; */
 }
 .ui-accordion-content {
-  margin: 20px 0;
+  padding: 20px 50px;
   font-size: 1.3vw;
   line-height: 1.8vw;
   overflow: visible;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
 }
 
 /*
