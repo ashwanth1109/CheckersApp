@@ -1,5 +1,6 @@
 const addCheckers = ($square, playerId) => {
   const $checker = $(`<div class="player">`).appendTo($square);
+
   $square.data(`data`).hasPiece = true;
   if (playerId === 1) {
     const data = new Checker(playerId);

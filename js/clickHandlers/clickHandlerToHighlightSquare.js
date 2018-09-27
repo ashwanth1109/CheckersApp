@@ -25,6 +25,7 @@ const clickHandlerToHighlightSquare = (
     // Check if opponent checker exists - if it does set square's hasPiece = false and then remove it
     //------------------------------------------------------------------------------------
     if ($opponentChecker) {
+      console.log($opponentChecker.parent().data(`data`));
       $opponentChecker.parent().data(`data`).hasPiece = false;
       $opponentChecker.remove();
       if (currentPlayer === 1) {
