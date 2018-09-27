@@ -1,11 +1,9 @@
-// console.log($);
-
 //------------------------------------------------------------------------------------
 // Convert each instruction section into accordion element by getting #accordion
 //------------------------------------------------------------------------------------
-$("#accordion").accordion({
-  icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
-});
+// $("#accordion").accordion({
+//   icons: { header: "ui-icon-plus", activeHeader: "ui-icon-minus" }
+$("#accordion").accordion();
 
 //-----Create variable that keeps track of whether instructions are shown or not-----//
 let instructionsShown = false;
@@ -26,7 +24,7 @@ createBoard();
 // //------------------------------------------------------------------------------------
 // // Show Instructions on Document Load
 // //------------------------------------------------------------------------------------
-// showInstructions();
+showInstructions();
 
 //------------------------------------------------------------------------------------
 // Add on click event handler to button #instructiions-button
@@ -41,7 +39,7 @@ $(`#close-instructions`).on(`click`, hideInstructions);
 //------------------------------------------------------------------------------------
 // Add on click event handler to button #new-game
 //------------------------------------------------------------------------------------
-$(`#new-game`).on(`click`, startNewGame);
+$(`#new-game`).on(`click`, startNewGame); // ISSUES WITH THIS
 
 //------------------------------------------------------------------------------------
 // Store all squares in constant $squares

@@ -3,13 +3,12 @@
 //------------------------------------------------------------------------------------
 const clickHandlerToHighlightSquare = (
   $currentSquare,
-  $nextSquare1,
-  $nextSquare2,
+  $nextSquare,
   $checker,
   $opponentChecker
 ) => {
   // REFACTOR THIS
-  $nextSquare1.on(`click`, () => {
+  $nextSquare.on(`click`, () => {
     //------------------------------------------------------------------------------------
     // Reset all previously highlighted squares
     //------------------------------------------------------------------------------------
@@ -21,7 +20,7 @@ const clickHandlerToHighlightSquare = (
     //------------------------------------------------------------------------------------
     // Append checker to next square 1
     //------------------------------------------------------------------------------------
-    $checker.appendTo($nextSquare1);
+    $checker.appendTo($nextSquare);
     //------------------------------------------------------------------------------------
     // Check if opponent checker exists - if it does set square's hasPiece = false and then remove it
     //------------------------------------------------------------------------------------
@@ -37,31 +36,36 @@ const clickHandlerToHighlightSquare = (
       }
     }
     //------------------------------------------------------------------------------------
-    // Set next square 1's hasPiece to true. Remove highlightSquare class from next square 1
-    //------------------------------------------------------------------------------------
-    $nextSquare1.data(`data`).hasPiece = true;
-    $nextSquare1.removeClass(`highlightSquare`).addClass(`dark`);
-    $nextSquare1.off(`click`);
-    //------------------------------------------------------------------------------------
     // Check if next square is at the edge so as to convert checker to king
     //------------------------------------------------------------------------------------
-    checkIfAtOpponentEdge($nextSquare1);
-    //------------------------------------------------------------------------------------
-    // Check if next square 2 exists
-    //------------------------------------------------------------------------------------
-    if ($nextSquare2) {
-      //------------------------------------------------------------------------------------
-      // Remove highlightSquare class from next square 2 since move has been made.
-      //------------------------------------------------------------------------------------
-      $nextSquare2.removeClass(`highlightSquare`).addClass(`dark`);
-      $nextSquare2.off(`click`);
-    }
+    checkIfAtOpponentEdge($nextSquare);
+    $nextSquare.data(`data`).hasPiece = true;
+    $nextSquare.off(`click`);
+    $(`.highlightSquare`)
+      .removeClass(`highlightSquare`)
+      .addClass(`dark`);
+
+    // //------------------------------------------------------------------------------------
+    // // Set next square 1's hasPiece to true. Remove highlightSquare class from next square 1
+    // //------------------------------------------------------------------------------------
+    // $nextSquare1.data(`data`).hasPiece = true;
+    // $nextSquare1.removeClass(`highlightSquare`).addClass(`dark`);
+    // $nextSquare1.off(`click`);
+    // //------------------------------------------------------------------------------------
+    // // Check if next square 2 exists
+    // //------------------------------------------------------------------------------------
+    // if ($nextSquare2) {
+    //   //------------------------------------------------------------------------------------
+    //   // Remove highlightSquare class from next square 2 since move has been made.
+    //   //------------------------------------------------------------------------------------
+    //   $nextSquare2.removeClass(`highlightSquare`).addClass(`dark`);
+    //   $nextSquare2.off(`click`);
+    // }
     //------------------------------------------------------------------------------------
     // Reset all jump positions and move positions for reuse
     //------------------------------------------------------------------------------------
     $checker.data(`data`).jumpPositions = [];
-    $checker.data(`data`).movePosition1 = null;
-    $checker.data(`data`).movePosition2 = null;
+    $checker.data(`data`).movePositions = [];
     $checker.data(`data`).checkersThatCanBeCaptured = [];
     //------------------------------------------------------------------------------------
     // Check if checker can jump one more time: Handle this case here bruh!

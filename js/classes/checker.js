@@ -5,8 +5,7 @@ class Checker {
     this.playerId = playerId;
     this.isItKing = false;
     this.jumpPositions = [];
+    this.movePositions = [];
     this.checkersThatCanBeCaptured = [];
-    this.movePosition1 = null;
-    this.movePosition2 = null;
   }
 }

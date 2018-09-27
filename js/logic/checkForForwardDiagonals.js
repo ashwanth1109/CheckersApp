@@ -3,61 +3,54 @@
 //------------------------------------------------------------------------------------
 const checkForForwardDiagonals = $checker => {
   //------------------------------------------------------------------------------------
-  // Get the checkers parent square and its data object
+  // Get the checkers parent square data
   //------------------------------------------------------------------------------------
-  const $square = $checker.parent();
-  const squareData = $square.data(`data`);
+  const squareData = $checker.parent().data(`data`);
 
   //------------------------------------------------------------------------------------
   // Check if current player is 1
   //------------------------------------------------------------------------------------
   if (currentPlayer === 1) {
     //------------------------------------------------------------------------------------
-    // If current player is 1, then you want to check for topLeft and topRight which are its forward diagonals
+    // then you want to check for topLeft which is a forward diagonal
     //------------------------------------------------------------------------------------
+    const topLeftData = $squares.eq(squareData.topLeft).data(`data`);
     //------------------------------------------------------------------------------------
-    // Check if TOP LEFT is inside the board and check if move / jump square is available. If so, highlight checker
+    // Check if TOP LEFT is inside the board and check if move / jump square is available.
+    // If so, highlight checker
     //------------------------------------------------------------------------------------
-    checkForMoveSquare(
-      squareData.topLeft,
-      $squares.eq(squareData.topLeft).data(`data`).topLeft,
-      0,
-      $checker
-    );
+    checkForMoveSquare(squareData.topLeft, topLeftData.topLeft, $checker);
     //------------------------------------------------------------------------------------
-    // Check if TOP RIGHT is inside the board and check if move / jump square is available. If so, highlight checker
+    // then you want to check for topRight which is a forward diagonal
     //------------------------------------------------------------------------------------
-    checkForMoveSquare(
-      squareData.topRight,
-      $squares.eq(squareData.topRight).data(`data`).topRight,
-      1,
-      $checker
-    );
+    const topRightData = $squares.eq(squareData.topRight).data(`data`);
+    //------------------------------------------------------------------------------------
+    // Check if TOP RIGHT is inside the board and check if move / jump square is available.
+    // If so, highlight checker
+    //------------------------------------------------------------------------------------
+    checkForMoveSquare(squareData.topRight, topRightData.topRight, $checker);
   }
   //------------------------------------------------------------------------------------
   // Check if current player is 2
   //------------------------------------------------------------------------------------
   else if (currentPlayer === 2) {
     //------------------------------------------------------------------------------------
-    // If current player is 2, then you want to check for botLeft and botRight which are its forward diagonals
+    // then you want to check for botLeft which is a forward diagonal
     //------------------------------------------------------------------------------------
+    const botLeftData = $squares.eq(squareData.botLeft).data(`data`);
     //------------------------------------------------------------------------------------
-    // Check if BOT LEFT is inside the board and check if move / jump square is available. If so, highlight checker
+    // Check if BOT LEFT is inside the board and check if move / jump square is available.
+    // If so, highlight checker
     //------------------------------------------------------------------------------------
-    checkForMoveSquare(
-      squareData.botLeft,
-      $squares.eq(squareData.botLeft).data(`data`).botLeft,
-      0,
-      $checker
-    );
+    checkForMoveSquare(squareData.botLeft, botLeftData.botLeft, $checker);
     //------------------------------------------------------------------------------------
-    // Check if BOT RIGHT is inside the board and check if move / jump square is available. If so, highlight checker
+    // then you want to check for botRight which is a forward diagonal
     //------------------------------------------------------------------------------------
-    checkForMoveSquare(
-      squareData.botRight,
-      $squares.eq(squareData.botRight).data(`data`).botRight,
-      1,
-      $checker
-    );
+    const botRightData = $squares.eq(squareData.botRight).data(`data`);
+    //------------------------------------------------------------------------------------
+    // Check if BOT RIGHT is inside the board and check if move / jump square is available.
+    // If so, highlight checker
+    //------------------------------------------------------------------------------------
+    checkForMoveSquare(squareData.botRight, botRightData.botRight, $checker);
   }
 };

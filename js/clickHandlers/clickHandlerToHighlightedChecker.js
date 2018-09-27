@@ -11,109 +11,57 @@ const clickHandlerToHighlightedChecker = $checker => {
     // Add selectChecker class to indicate that checker has been clicked
     //------------------------------------------------------------------------------------
     addSelectedToChecker($checker);
-
-    //------------------------------------------------------------------------------------
-    // Get checker that was clicked
-    //------------------------------------------------------------------------------------
-    const $checker2 = $(event.currentTarget);
     //------------------------------------------------------------------------------------
     // Get current square on which the checker is positioned
     //------------------------------------------------------------------------------------
-    const $currentSquare = $checker2.parent();
-
+    const $currentSquare = $checker.parent();
     //------------------------------------------------------------------------------------
-    // Get move square 1 from checkers data property move position 1
+    // Get move square array from checkers data array move positions
     //------------------------------------------------------------------------------------
-    const $moveSquare1 = $checker2.data(`data`).movePosition1;
+    const $moveSquares = $checker.data(`data`).movePositions;
     //------------------------------------------------------------------------------------
-    // Get move square 2 from checkers data property move position 2
+    // Get jump square array from checkers data array jump positions
     //------------------------------------------------------------------------------------
-    const $moveSquare2 = $checker2.data(`data`).movePosition2;
+    const $jumpSquares = $checker.data(`data`).jumpPositions;
     //------------------------------------------------------------------------------------
-    // Get jump square 1 from checkers data array jump positions
+    // Check if jump squares array has atleast one element.
+    // If they do, they should be prioritized ahead of move squares
     //------------------------------------------------------------------------------------
-    const $jumpSquare1 = $checker2.data(`data`).jumpPositions[0];
-    //------------------------------------------------------------------------------------
-    // If jump square 1 is present then get opponent checker 1 from checkers captured array
-    //------------------------------------------------------------------------------------
-    const $opponentChecker1 = $checker2.data(`data`)
-      .checkersThatCanBeCaptured[0];
-    //------------------------------------------------------------------------------------
-    // Get jump square 1 from checkers data array jump positions
-    //------------------------------------------------------------------------------------
-    const $jumpSquare2 = $checker2.data(`data`).jumpPositions[1];
-    //------------------------------------------------------------------------------------
-    // If jump square 1 is present then get opponent checker 1 from checkers captured array
-    //------------------------------------------------------------------------------------
-    const $opponentChecker2 = $checker2.data(`data`)
-      .checkersThatCanBeCaptured[1];
-    //------------------------------------------------------------------------------------
-    // Check if jump square 1 or 2 exist. If they do, they should be prioritized ahead of move squares
-    //------------------------------------------------------------------------------------
-    if ($jumpSquare1 || $jumpSquare2) {
+    if ($jumpSquares.length > 0) {
       //------------------------------------------------------------------------------------
-      // Check if jump square 1 exists
+      // If jump squares array has elements then get opponent checkers array from $checker
       //------------------------------------------------------------------------------------
-      if ($jumpSquare1) {
-        //------------------------------------------------------------------------------------
-        // Add class highlight to jump square 1
-        //------------------------------------------------------------------------------------
-        addHighlightToSquare($jumpSquare1);
+      const $opponentCheckers = $checker.data(`data`).checkersThatCanBeCaptured;
+      //------------------------------------------------------------------------------------
+      // Check if jump square array exists
+      //------------------------------------------------------------------------------------
+      for (let i = 0; i < $jumpSquares.length; i++) {
+        addHighlightToSquare($jumpSquares[i]);
         clickHandlerToHighlightSquare(
           $currentSquare,
-          $jumpSquare1,
-          $jumpSquare2,
-          $checker2,
-          $opponentChecker1
-        );
-      }
-
-      if ($jumpSquare2) {
-        addHighlightToSquare($jumpSquare2);
-        clickHandlerToHighlightSquare(
-          $currentSquare,
-          $jumpSquare2,
-          $jumpSquare1,
-          $checker2,
-          $opponentChecker2
+          $jumpSquares[i],
+          $checker,
+          $opponentCheckers[i]
         );
       }
     }
     //------------------------------------------------------------------------------------
     // Check if move square 1 or 2 exist. Since check for jump is already done, we dont need to worry about it
     //------------------------------------------------------------------------------------
-    else if ($moveSquare1 || $moveSquare2) {
+    else if ($moveSquares.length > 0) {
       //------------------------------------------------------------------------------------
-      // Check if move square 1 exists
+      // Check if move square array exists
       //------------------------------------------------------------------------------------
-      if ($moveSquare1) {
-        //------------------------------------------------------------------------------------
-        // Add class highlight to move square 1
-        //------------------------------------------------------------------------------------
-        addHighlightToSquare($moveSquare1);
-        clickHandlerToHighlightSquare(
-          $currentSquare,
-          $moveSquare1,
-          $moveSquare2,
-          $checker2,
-          $opponentChecker1
-        );
-      }
-      //------------------------------------------------------------------------------------
-      // Check if move square 2 exists
-      //------------------------------------------------------------------------------------
-      if ($moveSquare2) {
-        //------------------------------------------------------------------------------------
-        // Add class highlight to move square 2
-        //------------------------------------------------------------------------------------
-        addHighlightToSquare($moveSquare2);
-        clickHandlerToHighlightSquare(
-          $currentSquare,
-          $moveSquare2,
-          $moveSquare1,
-          $checker2,
-          $opponentChecker2
-        );
+      if ($moveSquares) {
+        for (let i = 0; i < $moveSquares.length; i++) {
+          addHighlightToSquare($moveSquares[i]);
+          clickHandlerToHighlightSquare(
+            $currentSquare,
+            $moveSquares[i],
+            $checker,
+            null
+          );
+        }
       }
     }
   });

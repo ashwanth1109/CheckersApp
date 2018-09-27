@@ -6,28 +6,23 @@ const checkForMovesAvailable = () => {
   // Get all player pieces for current player (e.g. black for player 1 and red for player 2)
   //------------------------------------------------------------------------------------
   const $checkers = getPlayerPieces();
-
   //------------------------------------------------------------------------------------
   // Iterate through the array of player pieces
   //------------------------------------------------------------------------------------
   for (const checker of $checkers) {
     //------------------------------------------------------------------------------------
-    // Convert each checker to a jQuery Object
-    //------------------------------------------------------------------------------------
-    const $checker = $(checker);
-    //------------------------------------------------------------------------------------
     // Check if current checker piece is king piece or not
     //------------------------------------------------------------------------------------
-    if ($checker.data(`data`).isItKing) {
+    if ($(checker).data(`data`).isItKing) {
       //------------------------------------------------------------------------------------
       // If King piece, then checker can move in 4 diagonals
       //------------------------------------------------------------------------------------
-      checkForAllDiagonals($checker); // DEAD END
+      checkForAllDiagonals($(checker));
     } else {
       //------------------------------------------------------------------------------------
       // Else, king piece can only move in forward (2) diagonals
       //------------------------------------------------------------------------------------
-      checkForForwardDiagonals($checker);
+      checkForForwardDiagonals($(checker));
     }
   }
 };
