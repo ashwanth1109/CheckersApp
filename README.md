@@ -155,7 +155,7 @@ Each square also has a data attribute which stores the square object created fro
 Alternating squares are provided classes 'light' and 'dark' to create the checker pattern.
 We then add all the checkers in their starting positions by invoking addCheckers()
 
-![alt text](https://ashwanth1109.github.io/CheckersApp/img/img003.png "Square Class")
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img003.png "Create the board")
 
 ```javascript
 const createBoard = () => {
@@ -251,7 +251,9 @@ const checkForMovesAvailable = $checkers => {
 
 ### 5B. Check for win condition 2, i.e. no moves remaining for player - checkForNoMovesLeft()
 
-If there are no checkers with highlight class (that is the length of the array of checkers with highlight class is 0), then there are no moves remaining for current player and hence the other player is declared as winner by invoking the end game function
+If there are no checkers with highlight class (that is the length of the array of checkers with highlight class is 0), then there are no moves remaining for current player and hence the other player is declared as winner by invoking the end game function.
+
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img004.png "Black has no moves left")
 
 ```javascript
 const checkForNoMovesLeft = () => {
@@ -267,7 +269,9 @@ const checkForNoMovesLeft = () => {
 
 ### 5C. Ending the game - endGame()
 
-To show that it is the end of the game, we bring the game over container into view, and add the winners name and color to style the container and display who the winner is
+To show that it is the end of the game, we bring the game over container into view, and add the winners name and color to style the container and display who the winner is.
+
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img005.png "End game container")
 
 ```javascript
 const endGame = winner => {
