@@ -188,9 +188,7 @@ const addCheckers = ($square, playerId) => {
   const $checker = $(`<div class="player">`).appendTo($square);
   const data = new Checker(playerId);
   $checker.data(`data`, data);
-
   $square.data(`data`).hasPiece = true;
-
   if (playerId === 1) {
     $checker.addClass(`black`);
   } else if (playerId === 2) {
@@ -199,14 +197,24 @@ const addCheckers = ($square, playerId) => {
 };
 ```
 
-### 4. Get all checkers for current player - getPlayerPieces()
+### 4A. Starting the current players turn - startTurn()
 
-First we get all checkers for current player - 1 or 2
+We start the turn by getting all the current player checkers and seeing if they have positions to move to
+
+```javascript
+const startTurn = () => {
+  const $checkers = getPlayerPieces();
+  checkForMovesAvailable($checkers);
+};
+```
+
+### 4B. Getting the current player checkers - getPlayerPieces()
+
+To get the current player pieces, we filter black or red pieces from all checkers array based on player turn.
 
 ```javascript
 const getPlayerPieces = () => {
   const $checkers = $(`.player`);
-
   if (currentPlayer === 1) {
     return $checkers.filter($(`.black`));
   } else if (currentPlayer === 2) {
@@ -215,7 +223,7 @@ const getPlayerPieces = () => {
 };
 ```
 
-### 5. Checking for moves available for current player - checkForMovesAvailable()
+### 5A. Checking for moves available for current player - checkForMovesAvailable()
 
 Then we check for all the moves that are available for the checkers of current player.
 To do this we iterate through all the current player checkers and check if its king or not.
@@ -231,10 +239,44 @@ const checkForMovesAvailable = $checkers => {
       checkForForwardDiagonals($(checker));
     }
   }
+  checkForNoMovesLeft();
 };
 ```
 
-### 6. Checking for forward diagonals - checkForForwardDiagonals()
+### 5B. Check for win condition 2, i.e. no moves remaining for player - checkForNoMovesLeft()
+
+If there are no checkers with highlight class (that is the length of the array of checkers with highlight class is 0), then there are no moves remaining for current player and hence the other player is declared as winner by invoking the end game function
+
+```javascript
+const checkForNoMovesLeft = () => {
+  if ($(`.highlightChecker`).length === 0) {
+    if (currentPlayer === 1) {
+      endGame(2);
+    } else {
+      endGame(1);
+    }
+  }
+};
+```
+
+### 5C. Ending the game - endGame()
+
+To show that it is the end of the game, we bring the game over container into view, and add the winners name and color to style the container and display who the winner is
+
+```javascript
+const endGame = winner => {
+  $(`#game-over-container`).css(`display`, `flex`);
+  if (winner === 1) {
+    $(`#game-over`).addClass(`black`);
+    $(`#game-winner`).text(`BLACK`);
+  } else if (winner === 2) {
+    $(`#game-over`).addClass(`red`);
+    $(`#game-winner`).text(`RED`);
+  }
+};
+```
+
+### 6A. Checking for forward diagonals - checkForForwardDiagonals()
 
 We first get checkers parent square data, and then we check if we can make a move by invoking the
 checkForMoveSquare().
@@ -245,7 +287,6 @@ For player 2, then bot left and bot right are its forward diagonals
 ```javascript
 const checkForForwardDiagonals = $checker => {
   const squareData = $checker.parent().data(`data`);
-
   if (currentPlayer === 1) {
     const topLeftData = $squares.eq(squareData.topLeft).data(`data`);
     checkForMoveSquare(
@@ -265,7 +306,7 @@ const checkForForwardDiagonals = $checker => {
 };
 ```
 
-### 7. Check for all diagonals for move options - checkForAllDiagonals()
+### 6B. Check for all diagonals for move options - checkForAllDiagonals()
 
 We first get checkers parent square data, and then we check if we can make a move by invoking
 checkForMoveSquare on all 4 diagonals - top left, top right, bot left and bot right.
@@ -296,7 +337,7 @@ const checkForAllDiagonals = $checker => {
 };
 ```
 
-### 8. Check if we can make a move - checkForMoveSquare()
+### 7. Check if we can make a move - checkForMoveSquare()
 
 We get diagonal and jump diagonal squares as params along with checker.
 We create a diagonal object. We store diagonal square and jumpDiagonal square if they are inside the board in $diagonal and $jumpDiagonal.
