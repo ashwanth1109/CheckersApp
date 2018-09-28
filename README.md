@@ -1,11 +1,12 @@
 # Checkers App (1-week long project)
 
-# TECHNOLOGIES USED - 
-HTML, CSS, Vanilla JS (ES6) and jQuery
-
 2 Player Checker Game
 
 https://ashwanth1109.github.io/CheckersApp/
+
+# TECHNOLOGIES USED - 
+
+HTML, CSS, Vanilla JS (ES6) and jQuery
 
 # CORE CODE - ALGO AND LOGIC
 
