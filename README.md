@@ -786,3 +786,27 @@ const rotateBoard = animationState => {
   }
 }
 ```
+
+### 14D. Reset checker class - resetCheckerClass()
+
+Resets all checkers classes - selected or highlighted and removes any on click event handlers on them.
+
+Resets the diagonals data object on the checker for reuse.
+
+```javascript
+const resetCheckerClass = () => {
+  $(`.selectChecker`)
+    .removeClass(`selectChecker`)
+    .addClass(`highlightChecker`);
+
+  $(`.highlightChecker`)
+    .removeClass(`highlightChecker`)
+    .off(`click`);
+
+  for (const checker of $(`.player`)) {
+    const resetData = $(checker).data(`data`);
+    resetData.diagonals = [];
+    $(checker).data(`data`, resetData);
+  }
+};
+```
