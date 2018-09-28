@@ -22,6 +22,8 @@ A square has the following properties -
 
 (4) hasPiece - set to true if there is a checker piece on the square
 
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img001.png "Square Class")
+
 ```javascript
 class Square {
   constructor(rowPosition, columnPosition, gameSize) {
