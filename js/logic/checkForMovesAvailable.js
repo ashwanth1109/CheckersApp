@@ -22,4 +22,13 @@ const checkForMovesAvailable = $checkers => {
       checkForForwardDiagonals($(checker));
     }
   }
+  console.log($(`.highlightChecker`));
+  if ($(`.highlightChecker`).length === 0) {
+    console.log(`entering highlight checker is null condition`);
+    if (currentPlayer === 1) {
+      endGame(2);
+    } else {
+      endGame(1);
+    }
+  }
 };

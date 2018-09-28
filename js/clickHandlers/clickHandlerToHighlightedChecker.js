@@ -20,6 +20,10 @@ const clickHandlerToHighlightedChecker = $checker => {
     //------------------------------------------------------------------------------------
     addSelectedToChecker($checker);
     //------------------------------------------------------------------------------------
+    // This variable ensures that player can only jump if there is an option to jump
+    //------------------------------------------------------------------------------------
+    let jumpPositionAvailable = false;
+    //------------------------------------------------------------------------------------
     // The checker has all the moves stored in its diagonal objects array, so we iterate the array
     //------------------------------------------------------------------------------------
     for (const diagonal of $checker.data(`data`).diagonals) {
@@ -27,6 +31,10 @@ const clickHandlerToHighlightedChecker = $checker => {
       // if diagonal object item has a jump position, then checker has option to jump
       //------------------------------------------------------------------------------------
       if (diagonal.jumpPosition) {
+        //------------------------------------------------------------------------------------
+        // Set variable jump positions available to true
+        //------------------------------------------------------------------------------------
+        jumpPositionAvailable = true;
         //------------------------------------------------------------------------------------
         // if jump position exists, then highlight jump square to indicate this
         //------------------------------------------------------------------------------------
@@ -42,11 +50,13 @@ const clickHandlerToHighlightedChecker = $checker => {
           diagonal.opponentChecker // opponent piece to capture
         );
       }
+    }
+    for (const diagonal of $checker.data(`data`).diagonals) {
       //------------------------------------------------------------------------------------
       // If jump square array doesnt exist, then check if checker has a move position
       // If it does, then that means checker can move
       //------------------------------------------------------------------------------------
-      else if (diagonal.movePosition) {
+      if (diagonal.movePosition && !jumpPositionAvailable) {
         //------------------------------------------------------------------------------------
         // if jump position exists, then highlight move square to indicate this
         //------------------------------------------------------------------------------------

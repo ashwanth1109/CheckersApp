@@ -55,18 +55,24 @@ const clickHandlerToHighlightSquare = (
         redScore++;
         $(`#red-score`).text(redScore);
       }
+      //------------------------------------------------------------------------------------
+      // Check if checker can make a second move
+      //------------------------------------------------------------------------------------
+      checkForSecondMove($nextSquare, $nextSquare.children());
+    } else {
+      //------------------------------------------------------------------------------------
+      // Check if next square is at the edge so as to convert checker to king
+      //------------------------------------------------------------------------------------
+      checkIfAtOpponentEdge($nextSquare);
+      //------------------------------------------------------------------------------------
+      // We reset all previously highlighted squares and turn off their click handlers
+      //------------------------------------------------------------------------------------
+      resetHighlightSquares(); // WEIRD: code seems to work without this as well. WHY??
+      //------------------------------------------------------------------------------------
+      // Check if checker can jump one more time: Handle this case here bro!
+      //------------------------------------------------------------------------------------
+
+      changePlayerTurn();
     }
-    //------------------------------------------------------------------------------------
-    // Check if next square is at the edge so as to convert checker to king
-    //------------------------------------------------------------------------------------
-    checkIfAtOpponentEdge($nextSquare);
-    //------------------------------------------------------------------------------------
-    // We reset all previously highlighted squares and turn off their click handlers
-    //------------------------------------------------------------------------------------
-    resetHighlightSquares(); // WEIRD: code seems to work without this as well. WHY??
-    //------------------------------------------------------------------------------------
-    // Check if checker can jump one more time: Handle this case here bro! FUTURE ENHANCEMENT
-    //------------------------------------------------------------------------------------
-    changePlayerTurn();
   });
 };
