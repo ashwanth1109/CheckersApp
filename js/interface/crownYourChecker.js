@@ -1,18 +1,25 @@
 //------------------------------------------------------------------------------------
-// Add Highlight Class to checker - adds a white border to checker
+// Function checks to see if your checker is already king. If not, then it converts it to king
+// by adding crown image on checker and setting checkers isItKing property to true
 //------------------------------------------------------------------------------------
-const addHighlightToChecker = $checker => {
+const crownYourChecker = $square => {
   //------------------------------------------------------------------------------------
-  // Check whether checker is already highlighted
+  // Check if checker is already king
   //------------------------------------------------------------------------------------
-  if (!$checker.hasClass(`highlightChecker`)) {
+  if (!$square.children().data(`data`).isItKing) {
     //------------------------------------------------------------------------------------
-    // If checker is not highlighted, then add class highlight checker
+    // Add img to checker
     //------------------------------------------------------------------------------------
-    $checker.addClass(`highlightChecker`);
+    $square
+      .children()
+      .append(
+        $(
+          `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
+        )
+      );
     //------------------------------------------------------------------------------------
-    // Set click handler to highlighted checker
+    // Set isItKing property in checker to true
     //------------------------------------------------------------------------------------
-    clickHandlerToHighlightedChecker($checker);
+    $square.children().data(`data`).isItKing = true;
   }
 };

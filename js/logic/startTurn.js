@@ -1,3 +1,7 @@
+//------------------------------------------------------------------------------------
+// Function that starts turn by getting all the player pieces for current player
+// and then checks for moves available for that player
+//------------------------------------------------------------------------------------
 const startTurn = () => {
   //------------------------------------------------------------------------------------
   // Store all squares in $squares

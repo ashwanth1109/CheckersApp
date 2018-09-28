@@ -1,3 +1,7 @@
+//------------------------------------------------------------------------------------
+// Function that adds a click event listener and on clicking a checker, it selects it
+// and shows highlighted squares that the checker can move to
+//------------------------------------------------------------------------------------
 const clickHandlerToHighlightedChecker = $checker => {
   //------------------------------------------------------------------------------------
   // Add click event handler to all the highlighted checkers
@@ -8,11 +12,11 @@ const clickHandlerToHighlightedChecker = $checker => {
     //------------------------------------------------------------------------------------
     e.stopPropagation();
     //------------------------------------------------------------------------------------
-    // Reset all previously highlighted squares if any from previous click
+    // Reset all previously highlighted squares if any from previous click and turns off click events on squares
     //------------------------------------------------------------------------------------
-    resetHighlightSquares();
+    resetHighlightSquares(); // this reset is required
     //------------------------------------------------------------------------------------
-    // Add selectChecker class to indicate that checker has been clicked
+    // Add selectChecker class (yellow border) to indicate that checker has been clicked
     //------------------------------------------------------------------------------------
     addSelectedToChecker($checker);
     //------------------------------------------------------------------------------------
@@ -54,7 +58,7 @@ const clickHandlerToHighlightedChecker = $checker => {
           $checker.parent(), // current square
           diagonal.movePosition, // move square
           $checker, // checker
-          null
+          null // no opponent checker to capture
         );
       }
     }

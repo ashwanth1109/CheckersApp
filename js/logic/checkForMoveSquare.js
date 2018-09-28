@@ -12,13 +12,13 @@ const checkForMoveSquare = (
   let $diagonal = null,
     $jumpDiagonal = null;
   //------------------------------------------------------------------------------------
-  // Check if diagonal is null or not
+  // Check if move square value is null or not
   //------------------------------------------------------------------------------------
   if (diagonal) {
     $diagonal = $squares.eq(diagonal); // stores the move square div
   }
   //------------------------------------------------------------------------------------
-  // Check if jump diagonal is null or not
+  // Check if jump square value is null or not
   //------------------------------------------------------------------------------------
   if (jumpDiagonal) {
     $jumpDiagonal = $squares.eq(jumpDiagonal); // stores the jump square div
@@ -28,7 +28,7 @@ const checkForMoveSquare = (
   //------------------------------------------------------------------------------------
   const diagonalObject = new Diagonal();
   //------------------------------------------------------------------------------------
-  // Check if diagonal value is not null, then move square is inside the board
+  // Check if move square is not null, then move square is inside the board
   //------------------------------------------------------------------------------------
   if ($diagonal !== null) {
     //------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ const checkForMoveSquare = (
     //------------------------------------------------------------------------------------
     if ($diagonal.data(`data`).hasPiece) {
       //------------------------------------------------------------------------------------
-      // Check if jumpDiagonal value is not null, then jump square is inside the board
+      // Check if jump square value is not null, then jump square is inside the board
       //------------------------------------------------------------------------------------
       if ($jumpDiagonal !== null) {
         //------------------------------------------------------------------------------------
@@ -59,6 +59,9 @@ const checkForMoveSquare = (
     // If move square has no piece $checker can move here. So highlight it
     //------------------------------------------------------------------------------------
     else {
+      //------------------------------------------------------------------------------------
+      // Since piece can move here, we store the move position
+      //------------------------------------------------------------------------------------
       diagonalObject.movePosition = $diagonal;
       //------------------------------------------------------------------------------------
       // If move square is available, then highlight checker piece if not already highlighted
@@ -66,5 +69,8 @@ const checkForMoveSquare = (
       addHighlightToChecker($checker);
     }
   }
+  //------------------------------------------------------------------------------------
+  // We store the diagonal object in the diagonals array of checker object
+  //------------------------------------------------------------------------------------
   $checker.data(`data`).diagonals.push(diagonalObject); // store the diagonal object in your checker
 };

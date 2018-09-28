@@ -1,49 +1,38 @@
+//------------------------------------------------------------------------------------
+// This function checks if game is over. If it is, it invokes end game function
+// Else, it toggles the value of the current player and starts the next turn
+//------------------------------------------------------------------------------------
 const changePlayerTurn = () => {
   //------------------------------------------------------------------------------------
-  // Check for win condition
+  // Check to see if game is over, by checking win condition
   //------------------------------------------------------------------------------------
-  if (blackScore === 12) {
-    endGame(1);
-  } else if (redScore === 12) {
-    endGame(2);
-  }
+  checkIfGameOver();
 
   //------------------------------------------------------------------------------------
   // Alternate player turn
   //------------------------------------------------------------------------------------
   if (currentPlayer === 1) {
+    //------------------------------------------------------------------------------------
+    // If board rotation is enabled, then we rotate the board based on which player is current player
+    //------------------------------------------------------------------------------------
+    if (boardRotation) {
+      rotateBoard(currentPlayer); // 1 is the animation state
+    }
     currentPlayer = 2;
-    //------------------------------------------------------------------------------------
-    // Remove previous animation classes
-    //------------------------------------------------------------------------------------
-    if ($gameBoard.hasClass(`rotate-board-2`)) {
-      $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
-    }
-    //------------------------------------------------------------------------------------
-    // Rotate the board - Add animation class
-    //------------------------------------------------------------------------------------
-    $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
   } else {
-    currentPlayer = 1;
     //------------------------------------------------------------------------------------
-    // Remove previous animation classes
+    // If board rotation is enabled, then we rotate the board based on which player is current player
     //------------------------------------------------------------------------------------
-    if ($gameBoard.hasClass(`rotate-board-1`)) {
-      $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
+    if (boardRotation) {
+      rotateBoard(currentPlayer); // 2 is the animation state
     }
-    //------------------------------------------------------------------------------------
-    // Rotate the board - Add animation class
-    //------------------------------------------------------------------------------------
-    $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
+    currentPlayer = 1;
   }
 
+  //------------------------------------------------------------------------------------
+  // Resets all checkers to non highlighted and non clickable state and resets all diagonals data
+  //------------------------------------------------------------------------------------
   resetCheckerClass();
-
-  for (const checker of $(`.player`)) {
-    const resetData = $(checker).data(`data`);
-    resetData.diagonals = [];
-    $(checker).data(`data`, resetData);
-  }
 
   //------------------------------------------------------------------------------------
   // IF YOU WANT TO LOG THE STATE OF THE BOARD, THEN UNCOMMENT THE LINE BELOW
@@ -53,7 +42,20 @@ const changePlayerTurn = () => {
   //   `***********************************************************************`
   // );
 
-  setTimeout(() => {
+  //------------------------------------------------------------------------------------
+  // If board rotation animation is enabled
+  //------------------------------------------------------------------------------------
+  if (boardRotation) {
+    //------------------------------------------------------------------------------------
+    // Then we wait till animation completes before starting the next turn
+    //------------------------------------------------------------------------------------
+    setTimeout(() => {
+      startTurn();
+    }, 1500);
+  } else {
+    //------------------------------------------------------------------------------------
+    // Else, we start the next turn immediately
+    //------------------------------------------------------------------------------------
     startTurn();
-  }, 1500);
+  }
 };

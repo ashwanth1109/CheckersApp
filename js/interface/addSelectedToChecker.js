@@ -11,7 +11,6 @@ const addSelectedToChecker = $checker => {
       removeSelectedFromChecker($(checker));
     }
   }
-
   //------------------------------------------------------------------------------------
   // Add selected to checker that was passed in as a parameter
   //------------------------------------------------------------------------------------

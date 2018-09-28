@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------------
+// Function checks to see if any of the 4 diagonals are available to make a move
+//------------------------------------------------------------------------------------
 const checkForAllDiagonals = $checker => {
   //------------------------------------------------------------------------------------
   // Get the checkers parent square's data object
