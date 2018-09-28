@@ -294,6 +294,8 @@ checkForMoveSquare().
 If player 1, then top left and top right are its forward diagonals.
 For player 2, then bot left and bot right are its forward diagonals
 
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img006.png "Forward Diagonals")
+
 ```javascript
 const checkForForwardDiagonals = $checker => {
   const squareData = $checker.parent().data(`data`);
@@ -320,6 +322,8 @@ const checkForForwardDiagonals = $checker => {
 
 We first get checkers parent square data, and then we check if we can make a move by invoking
 checkForMoveSquare on all 4 diagonals - top left, top right, bot left and bot right.
+
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img007.png "All Diagonals")
 
 ```javascript
 const checkForAllDiagonals = $checker => {
@@ -820,3 +824,5 @@ const resetCheckerClass = () => {
   }
 };
 ```
+
+# UNSOLVED PROBLEMS - Check issues for the repo
