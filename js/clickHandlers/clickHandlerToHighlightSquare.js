@@ -65,10 +65,6 @@ const clickHandlerToHighlightSquare = (
       //------------------------------------------------------------------------------------
       checkIfAtOpponentEdge($nextSquare);
       //------------------------------------------------------------------------------------
-      // We reset all previously highlighted squares and turn off their click handlers
-      //------------------------------------------------------------------------------------
-      resetHighlightSquares(); // WEIRD: code seems to work without this as well. WHY??
-      //------------------------------------------------------------------------------------
       // Check if checker can jump one more time: Handle this case here bro!
       //------------------------------------------------------------------------------------
 

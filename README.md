@@ -382,10 +382,9 @@ const checkForMoveSquare = (
 };
 ```
 
-### 9. Add highlightChecker class to all checkers that can make a move - addHighlightToChecker()
+### 8. Add highlightChecker class to all checkers that can make a move - addHighlightToChecker()
 
 Check if checker already has the class highlight checker. If not then, add the class highlight Checker.
-
 Also add a click handler to the checker that was highlighted.
 
 ```javascript
@@ -397,12 +396,12 @@ const addHighlightToChecker = $checker => {
 };
 ```
 
-### 10. Adding a click handler to the highlighted checkers - clickHandlerToHighlightedChecker()
+### 9. Adding a click handler to the highlighted checkers - clickHandlerToHighlightedChecker()
 
 On clicking a highlighted checker, we add selected class to indicate that a checker has been selected.
-Iterate through all diagonals that exist for checker (as these are all diagonals for which checker can move),
+Iterate through all diagonals that exist for checker (as these are all diagonals for which checker can move as the squares are inside the board),
 
-If diagonal has a jump position, highlight jump square and make it clickable by adding clickHandlerToHighlightSquare().
+If diagonal has a jump position, highlight jump square and make it clickable by adding clickHandlerToHighlightSquare(). We also use a variable jumpPositionAvailable to ensure that if there is a jump position, then the checkers move position should not be highlighted. If a checker can jump, it must only jump and not move.
 
 Else if diagonal has a move position, highlight move square and make it clickable by adding clickHandlerToHighlightSquare().
 
@@ -410,10 +409,12 @@ Else if diagonal has a move position, highlight move square and make it clickabl
 const clickHandlerToHighlightedChecker = $checker => {
   $checker.on(`click`, e => {
     e.stopPropagation();
-    resetHighlightSquares();
+    resetHighlightSquares(); // this reset is required
     addSelectedToChecker($checker);
+    let jumpPositionAvailable = false;
     for (const diagonal of $checker.data(`data`).diagonals) {
       if (diagonal.jumpPosition) {
+        jumpPositionAvailable = true;
         addHighlightToSquare(diagonal.jumpPosition);
         clickHandlerToHighlightSquare(
           $checker.parent(), // current square
@@ -421,13 +422,16 @@ const clickHandlerToHighlightedChecker = $checker => {
           $checker, // checker
           diagonal.opponentChecker // opponent piece to capture
         );
-      } else if (diagonal.movePosition) {
+      }
+    }
+    for (const diagonal of $checker.data(`data`).diagonals) {
+      if (diagonal.movePosition && !jumpPositionAvailable) {
         addHighlightToSquare(diagonal.movePosition);
         clickHandlerToHighlightSquare(
           $checker.parent(), // current square
           diagonal.movePosition, // move square
           $checker, // checker
-          null
+          null // no opponent checker to capture
         );
       }
     }
@@ -435,7 +439,7 @@ const clickHandlerToHighlightedChecker = $checker => {
 };
 ```
 
-### 11. Reset Highlight Squares by adding dark class back and removing on click - resetHighlightSquares()
+### 10A. Reset Highlight Squares by adding dark class back and removing on click - resetHighlightSquares()
 
 ```javascript
 const resetHighlightSquares = () => {
@@ -446,7 +450,7 @@ const resetHighlightSquares = () => {
 };
 ```
 
-### 12. Add selected to checker that was clicked - addSelectedToChecker()
+### 10B. Add selected to checker that was clicked - addSelectedToChecker()
 
 ```javascript
 const addSelectedToChecker = $checker => {
@@ -460,7 +464,7 @@ const addSelectedToChecker = $checker => {
 };
 ```
 
-### 13. Add highlightSquare class to all squares that the checker can move to - addHighlightToSquare()
+### 10C. Add highlightSquare class to all squares that the checker can move to - addHighlightToSquare()
 
 ```javascript
 const addHighlightToSquare = $square => {
@@ -470,7 +474,7 @@ const addHighlightToSquare = $square => {
 };
 ```
 
-### 14. Add a click handler to highlighted square
+### 11. Add a click handler to highlighted square
 
 Click Handler on Highlighted Square takes in current square, next square to move to that will be clicked by user, checker on current square and opponent checker on move square, if next square is jump square.
 
@@ -489,76 +493,173 @@ const clickHandlerToHighlightSquare = (
   $checker,
   $opponentChecker
 ) => {
-  if ($nextSquare) {
-    $nextSquare.on(`click`, () => {
-      resetHighlightSquares();
-      $currentSquare.data(`data`).hasPiece = false;
-      $checker.appendTo($nextSquare);
-      if ($opponentChecker) {
-        $opponentChecker.parent().data(`data`).hasPiece = false;
-        $opponentChecker.remove();
-        if (currentPlayer === 1) {
-          blackScore++;
-          $(`#black-score`).text(blackScore);
-        } else {
-          redScore++;
-          $(`#red-score`).text(redScore);
-        }
+  $nextSquare.on(`click`, () => {
+    resetHighlightSquares();
+    $checker.appendTo($nextSquare);
+    $currentSquare.data(`data`).hasPiece = false;
+    $nextSquare.data(`data`).hasPiece = true;
+    if ($opponentChecker) {
+      $opponentChecker.parent().data(`data`).hasPiece = false;
+      $opponentChecker.remove();
+      if (currentPlayer === 1) {
+        blackScore++;
+        $(`#black-score`).text(blackScore);
+      } else {
+        redScore++;
+        $(`#red-score`).text(redScore);
       }
+      checkForSecondMove($nextSquare, $nextSquare.children());
+    } else {
       checkIfAtOpponentEdge($nextSquare);
-      $nextSquare.data(`data`).hasPiece = true;
-      $nextSquare.off(`click`);
-      $(`.highlightSquare`)
-        .removeClass(`highlightSquare`)
-        .addClass(`dark`);
-      $checker.data(`data`).diagonals = [];
       changePlayerTurn();
-    });
+    }
+  });
+};
+```
+
+### 12A. Check if the checker can make a double jump - checkForSecondMove()
+
+Need to refactor this portion and add appropriate explanation here. Probably also dont need to reset highlight squares inside. Test this condition to verify.
+
+```javascript
+const checkForSecondMove = ($square, $checker) => {
+  checkIfAtOpponentEdge($square);
+  if ($checker.data(`data`).isItKing) {
+    if (
+      !checkForOnlyJump(
+        $square.data(`data`).topLeft,
+        $squares.eq($square.data(`data`).topLeft).data(`data`).topLeft,
+        $checker
+      ) &&
+      !checkForOnlyJump(
+        $square.data(`data`).topRight,
+        $squares.eq($square.data(`data`).topRight).data(`data`).topRight,
+        $checker
+      ) &&
+      !checkForOnlyJump(
+        $square.data(`data`).botLeft,
+        $squares.eq($square.data(`data`).botLeft).data(`data`).botLeft,
+        $checker
+      ) &&
+      !checkForOnlyJump(
+        $square.data(`data`).botRight,
+        $squares.eq($square.data(`data`).botRight).data(`data`).botRight,
+        $checker
+      )
+    ) {
+      resetHighlightSquares();
+      changePlayerTurn();
+    }
+  } else {
+    if (currentPlayer === 1) {
+      if (
+        !checkForOnlyJump(
+          $square.data(`data`).topLeft,
+          $squares.eq($square.data(`data`).topLeft).data(`data`).topLeft,
+          $checker
+        ) &&
+        !checkForOnlyJump(
+          $square.data(`data`).topRight,
+          $squares.eq($square.data(`data`).topRight).data(`data`).topRight,
+          $checker
+        )
+      ) {
+        resetHighlightSquares();
+        changePlayerTurn();
+      }
+    } else if (currentPlayer === 2) {
+      if (
+        !checkForOnlyJump(
+          $square.data(`data`).botLeft,
+          $squares.eq($square.data(`data`).botLeft).data(`data`).botLeft,
+          $checker
+        ) &&
+        !checkForOnlyJump(
+          $square.data(`data`).botRight,
+          $squares.eq($square.data(`data`).botRight).data(`data`).botRight,
+          $checker
+        )
+      ) {
+        resetHighlightSquares();
+        changePlayerTurn();
+      }
+    }
   }
 };
 ```
 
-### 15. Check if checker is now at opponent's end of the board - checkIfAtOpponentEdge()
+### 12B. Check for only jump condition - checkForOnlyJump()
 
-If checker has reached the end of the board, then it can move in all 4 diagonals and not just forward as it is a king piece now. To indigate that it is a king piece we set checkers property isItKing as true and add an image div 'crown.png' to the checker.
+For double jump to be possible, the new diagonal and jump diagonal should exist, the diagonal square should have an opponent piece and jump diagonal square should be available for the jump.
 
-Can probably refactor this some more (when you have time)
+If all of these conditions are true, then add highlight to square, set click handler on highlighted square and return true. Else return false.
+
+```javascript
+const checkForOnlyJump = (diagonal, jumpDiagonal, $checker) => {
+  if (
+    diagonal &&
+    jumpDiagonal &&
+    $squares.eq(diagonal).data(`data`).hasPiece &&
+    $squares
+      .eq(diagonal)
+      .children()
+      .data(`data`).playerId !== currentPlayer &&
+    !$squares.eq(jumpDiagonal).data(`data`).hasPiece
+  ) {
+    addHighlightToSquare($squares.eq(jumpDiagonal));
+    clickHandlerToHighlightSquare(
+      $checker.parent(),
+      $squares.eq(jumpDiagonal),
+      $checker,
+      $squares.eq(diagonal).children()
+    );
+    return true;
+  } else {
+    return false;
+  }
+};
+```
+
+### 13A. Check if checker is now at opponent's end of the board - checkIfAtOpponentEdge()
+
+If checker has reached the end of the board, then it can move in all 4 diagonals and not just forward as it is a king piece now. To indigate that it is a king piece, we invoke the crownYourChecker() method on it.
 
 ```javascript
 const checkIfAtOpponentEdge = $square => {
   if (currentPlayer === 1) {
     if ($square.data(`data`).row === 1) {
-      if (!$square.children().data(`data`).isItKing) {
-        $square
-          .children()
-          .append(
-            $(
-              `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
-            )
-          );
-        $square.children().data(`data`).isItKing = true;
-      }
+      crownYourChecker($square);
     }
   } else if (currentPlayer === 2) {
     if ($square.data(`data`).row === gameSize) {
-      if (!$square.children().data(`data`).isItKing) {
-        $square
-          .children()
-          .append(
-            $(
-              `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
-            )
-          );
-        $square.children().data(`data`).isItKing = true;
-      }
+      crownYourChecker($square);
     }
   }
 };
 ```
 
-### 16. Change Player Turn as turn is completed - changePlayerTurn()
+### 13B. Crown your checker to make it a king piece - crownYourChecker()
 
-When the current player turn is complete, then we first check for win condition, i.e. has black or red captured all the opponents checkers. If yes, we invoke end game function, passing in the winner denoted by 1 or 2 as parameter.
+In this function, we set checkers property isItKing as true and add an image div 'crown.png' to the checker.
+
+```javascript
+const crownYourChecker = $square => {
+  if (!$square.children().data(`data`).isItKing) {
+    $square
+      .children()
+      .append(
+        $(
+          `<img src="https://ashwanth1109.github.io/CheckersApp/img/crown.png"/>`
+        )
+      );
+    $square.children().data(`data`).isItKing = true;
+  }
+};
+```
+
+### 14A. Change Player Turn as turn is completed - changePlayerTurn()
+
+When the current player turn is complete, then we first check for win condition by invoking the checkIfGameOver() method.
 
 If game is not over, then we alternate the current player variable and rotate the board using a keyframe animation css class. Then we reset all checkers so that none of them have highlights or click events. We also reset the checker diagonals array for reuse.
 
@@ -566,36 +667,122 @@ At the end of the animation, we then check for moves available for the next play
 
 ```javascript
 const changePlayerTurn = () => {
-  if (blackScore === 12) {
-    endGame(1);
-  } else if (redScore === 12) {
-    endGame(2);
-  }
+  checkIfGameOver();
 
   if (currentPlayer === 1) {
+    if (boardRotation) {
+      rotateBoard(currentPlayer); // 1 is the animation state
+    }
     currentPlayer = 2;
+  } else {
+    if (boardRotation) {
+      rotateBoard(currentPlayer); // 2 is the animation state
+    }
+    currentPlayer = 1;
+  }
+
+  resetCheckerClass();
+
+  if (boardRotation) {
+    setTimeout(() => {
+      startTurn();
+    }, 1500);
+  } else {
+    startTurn();
+  }
+};
+```
+
+### 14B. Check if game is over, i.e. if all pieces have been captured by a player - checkIfGameOver()
+
+To check if game is over, we check if black or red has captured all the opponents checkers, i.e. score is 12 for 8 by 8 board and 20 for 10 by 10 board. If yes, we invoke end game function, passing in the winner denoted by 1 or 2 as parameter.
+
+```javascript
+const checkIfGameOver = () => {
+  let winScore = 12;
+  if (gameSize === 10) {
+    winScore = 20;
+  }
+  if (blackScore === winScore) {
+    endGame(1);
+  } else if (redScore === winScore) {
+    endGame(2);
+  }
+};
+```
+
+### 14C. If board rotation is enabled, then we rotate the board between two animation states - rotateBoard()
+
+```javascript
+const rotateBoard = animationState => {
+  if (animationState === 1) {
     if ($gameBoard.hasClass(`rotate-board-2`)) {
       $gameBoard.removeClass(`rotate-board-2`).removeClass(`board-state-2`);
     }
     $gameBoard.addClass(`rotate-board-1`).addClass(`board-state-1`);
-  } else {
-    currentPlayer = 1;
+  } else if (animationState === 2) {
     if ($gameBoard.hasClass(`rotate-board-1`)) {
       $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
     }
     $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
   }
-
-  resetCheckerClass();
-
-  for (const checker of $(`.player`)) {
-    const resetData = $(checker).data(`data`);
-    resetData.diagonals = [];
-    $(checker).data(`data`, resetData);
-  }
-
-  setTimeout(() => {
-    checkForMovesAvailable();
-  }, 1500);
 };
+```
+
+```css
+/*
+  ====================== GAME BOARD ====================== 
+*/
+.rotate-board-1 {
+  animation: rotateBoard1;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.board-state-1 {
+  transform: rotate(180deg);
+}
+.rotate-board-2 {
+  animation: rotateBoard2;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.board-state-2 {
+  transform: rotate(360deg);
+}
+.rotateChecker {
+  transform: rotate(180deg);
+}
+/*
+  ====================== ROTATE BOARD ANIMATION ====================== 
+*/
+@keyframes rotateBoard1 {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(0.6) rotate(0deg);
+  }
+  75% {
+    transform: scale(0.6) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(180deg);
+  }
+}
+@keyframes rotateBoard2 {
+  0% {
+    transform: scale(1) rotate(180deg);
+  }
+  25% {
+    transform: scale(0.6) rotate(180deg);
+  }
+  75% {
+    transform: scale(0.6) rotate(360deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
 ```
