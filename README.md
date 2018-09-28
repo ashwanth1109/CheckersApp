@@ -80,7 +80,6 @@ A checker has the following properties -
 (3) diagonals array - which will store the 4 diagonal objects (TL, TR, BL, BR) of each checker for that turn
 
 ```javascript
-//-----Checker CLASS-----//
 class Checker {
   constructor(playerId) {
     this.playerId = playerId;
@@ -101,8 +100,6 @@ Each diagonal object will have the following properties -
 (3) opponentChecker - stores the checker object if there is one on the movePosition square
 
 ```javascript
-// Diagonal Class
-
 class Diagonal {
   constructor() {
     this.movePosition = null;
@@ -112,7 +109,42 @@ class Diagonal {
 }
 ```
 
-### 2. Creating the Board - createBoard()
+### 2. Starting a new game - startNewGame()
+
+Start a new game is called initially and on reaching game over condition and clicking the new game button.
+
+So, first we check if game-over container is displaying and we hide it if it is.
+Then we rotate the board to starting position if it was flipped on starting the game.
+
+Next, we remove the previous board and we create a new board by invoking createBoard()
+
+We reset current player to 1, reset the scores and then start the turn by invoking startTurn()
+
+```javascript
+const startNewGame = () => {
+  if ($(`#game-over-container`).css(`display`) === `flex`) {
+    $(`#game-over-container`).css(`display`, `none`);
+  }
+
+  if ($gameBoard.hasClass(`rotate-board-1`)) {
+    $gameBoard.removeClass(`rotate-board-1`).removeClass(`board-state-1`);
+    $gameBoard.addClass(`rotate-board-2`).addClass(`board-state-2`);
+  }
+
+  $gameBoard.children().remove();
+  createBoard();
+
+  currentPlayer = 1;
+  blackScore = 0;
+  $(`#black-score`).text(blackScore);
+  redScore = 0;
+  $(`#red-score`).text(redScore);
+
+  startTurn();
+};
+```
+
+### 3A. Creating the Board - createBoard()
 
 We use nested for loops to iterate from 1 to 8 (or gameSize) and create 64 squares which we append to the game board.
 Each square also has a data attribute which stores the square object created from the square class.
@@ -123,28 +155,28 @@ We then add all the checkers in their starting positions by invoking addCheckers
 const createBoard = () => {
   for (let i = 1; i <= gameSize; i++) {
     const $row = $(`<div class="row">`).appendTo($gameBoard);
-
     for (let j = 1; j <= gameSize; j++) {
       const $square = $(`<div class="square">`).appendTo($row);
-      const data = new Square(i, j);
+      $(`<div class="horizontal-border">`).appendTo($row);
+      const data = new Square(i, j, gameSize);
       $square.data(`data`, data);
-
       if (!((i + j) % 2)) {
         $square.addClass(`dark`);
-        if (i < 4) {
+        if (i < gameSize / 2) {
           addCheckers($square, 2);
-        } else if (i > 5) {
+        } else if (i > gameSize / 2 + 1) {
           addCheckers($square, 1);
         }
       } else {
         $square.addClass(`light`);
       }
     }
+    $(`<div class="vertical-border">`).appendTo($gameBoard);
   }
 };
 ```
 
-### 3. Adding checkers to the Board - addCheckers()
+### 3B. Adding checkers to the Board - addCheckers()
 
 We create a checker div of class player and add it to squares.
 Each checker also stores a data attribute for checker objects from checker class.
