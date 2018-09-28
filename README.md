@@ -81,6 +81,8 @@ A checker has the following properties -
 
 (3) diagonals array - which will store the 4 diagonal objects (TL, TR, BL, BR) of each checker for that turn
 
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img002.png "Checker Class")
+
 ```javascript
 class Checker {
   constructor(playerId) {
@@ -152,6 +154,8 @@ We use nested for loops to iterate from 1 to 8 (or gameSize) and create 64 squar
 Each square also has a data attribute which stores the square object created from the square class.
 Alternating squares are provided classes 'light' and 'dark' to create the checker pattern.
 We then add all the checkers in their starting positions by invoking addCheckers()
+
+![alt text](https://ashwanth1109.github.io/CheckersApp/img/img003.png "Square Class")
 
 ```javascript
 const createBoard = () => {
