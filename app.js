@@ -73,6 +73,12 @@ $(`#rotate-button`).on(`click`, toggleRotation);
 $(`#audio-button`).on(`click`, toggleAudio);
 
 //------------------------------------------------------------------------------------
+// Add on click to game board size 10
+//------------------------------------------------------------------------------------
+$(`#game-size-8`).on(`click`, toggleGameSizeTo8);
+$(`#game-size-10`).on(`click`, toggleGameSizeTo10);
+
+//------------------------------------------------------------------------------------
 // TERMINOLOGY: Piece or Checker | Square |
 // JumpSquare or JumpPosition or JumpDiagonal |
 // MoveSquare or MovePosition or Diagonal

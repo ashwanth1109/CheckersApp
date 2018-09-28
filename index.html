@@ -100,8 +100,8 @@
       <div id="game-options">
         <h2>GAME OPTIONS</h2>
         <div>
-          <div class="button button-selected">8 by 8 CHECKERS</div>
-          <div class="button">10 by 10 DRAUGHTS</div>
+          <div class="button button-selected" id="game-size-8">8 by 8 CHECKERS</div>
+          <div class="button" id="game-size-10">10 by 10 DRAUGHTS</div>
         </div>
         <div>
           <div class="enabled" id="audio-button">
@@ -159,6 +159,9 @@
   <script src="./js/logic/checkIfGameOver.js"></script>
   <!-- ROTATE BOARD ANIMATION -->
   <script src="./js/interface/rotateBoard.js"></script>
+  <!-- TOGGLE GAME SIZES -->
+  <script src="./js/clickHandlers/toggleGameSizeTo8.js"></script>
+  <script src="./js/clickHandlers/toggleGameSizeTo10.js"></script>
   <!-- CHANGE PLAYER TURN -->
   <script src="./js/logic/changePlayerTurn.js"></script>
   <!-- CHECK IF CHECKER IS AT OPPONENT EDGE - CROWNING -->

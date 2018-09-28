@@ -9,6 +9,6 @@ const showInstructions = () => {
     //-----FADE INSTRUCTIONS INTO VIEW USING OPACITY-----//
     $(`#instructions`).css(`opacity`, 1);
     //-----MOVE INSTRUCTIONS TO THE FRONT BY SETTING Z INDEX TO 1-----//
-    $(`#instructions`).css(`zIndex`, 2);
+    $(`#instructions`).css(`zIndex`, 4);
   }
 };
