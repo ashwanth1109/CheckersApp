@@ -100,15 +100,15 @@
       <div id="game-options">
         <h2>GAME OPTIONS</h2>
         <div>
-          <div class="button button-selected">8 by 8 checkerboard</div>
-          <div class="button">12 by 12 checkerboard</div>
+          <div class="button button-selected">8 by 8 CHECKERS</div>
+          <div class="button">10 by 10 DRAUGHTS</div>
         </div>
         <div>
-          <div class="enabled">
+          <div class="enabled" id="audio-button">
             <div class="audio-image1"></div>
             <div class="option-title">AUDIO</div>
           </div>
-          <div class="enabled">
+          <div class="enabled" id="rotate-button">
             <div class="rotate-image1"></div>
             <div class="option-title">ROTATE</div>
           </div>
@@ -144,6 +144,9 @@
   <!-- ANIMATE INSTRUCTIONS INTO AND OUT OF VIEW -->
   <script src="./js/interface/showInstructions.js"></script>
   <script src="./js/interface/hideInstructions.js"></script>
+  <!-- TOGGLE ROTATION AND AUDIO BUTTONS-->
+  <script src="./js/logic/toggleRotation.js"></script>
+  <script src="./js/logic/toggleAudio.js"></script>
   <!-- GET PLAYER PIECES -->
   <script src="./js/logic/getPlayerPieces.js"></script>
   <!-- LOG STATE OF BOARD -->
